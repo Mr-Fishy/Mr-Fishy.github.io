@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Evan Fish | Portfolio</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<script src="https://kit.fontawesome.com/08e9995dc7.js" crossorigin="anonymous"></script>
+
+	<style>
+		body {
+			margin: 0;
+			background-color: rgb(10, 10, 20);
+
+			font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+			overflow: hidden;
+		}
+
+		h1, h2, h3, h4 {
+			margin: 8px;
+		}
+
+		h1 {
+			font-size: 2em;
+		}
+
+		#Page {
+			margin-left: auto;
+			margin-right: auto;
+			max-width: 1400px;
+
+			display: grid;
+			grid-template-columns: minmax(200px, 30%) 1fr;
+			grid-template-areas: 'sidebar content';
+		}
+
+		aside {
+			padding: 16px 8px 16px 16px;
+			height: calc(100vh - 32px);
+			
+			position: sticky;
+			top: 0;
+
+			grid-area: sidebar;
+			align-self: start;
+
+			display: grid;
+			grid-template-rows: auto 1fr;
+			grid-template-areas: 'pfp' 'social';
+			gap: 16px;
+		}
+
+		main {
+			padding: 16px 16px 16px 8px;
+			
+			grid-area: content;
+
+			display: grid;
+			gap: 16px;
+		}
+
+		@keyframes Rotate {
+			from { rotate: 0deg; }
+			50%  { scale: 1 1.5; }
+			to   { rotate: 360deg; }
+		}
+
+		#MouseBlob {
+			width: 20rem;
+			height: 20rem;
+			
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			translate: -50% -50%;
+
+			border-radius: 50%;
+			background: linear-gradient(to right, aquamarine, blueviolet, orangered);
+			animation: Rotate 20s infinite;
+			opacity: 0.9;
+		}
+
+		#MouseBlur {
+			height: 100%;
+			width: 100%;
+			
+			position: fixed;
+
+			backdrop-filter: blur(10vmax);
+		}
+
+		img {
+			width: 100%;
+			height: auto;
+
+			user-drag: none;
+			-webkit-user-drag: none;
+			user-select: none;
+			-webkit-user-select: none;
+		}
+
+		span > * {
+			display: inline-block;
+		}
+
+		.Card {
+			width: 100%;
+
+			border-radius: 8px;
+
+			box-shadow: 4px 4px 8px gray;
+
+			background-color: beige;
+			opacity: 0.5;
+		}
+
+		.Container {
+			padding: 16px;
+
+			display: grid;
+		}
+
+		.ContentBlock {
+			width: 100%;
+			height: 300px;
+
+			background-color: blanchedalmond;
+		}
+
+		@media only screen and (max-width: 600px), only screen and (max-height: 600px) {
+			#Page {
+				grid-template-columns: 100%;
+			}
+
+			aside {
+				position: static;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<div id="MouseBlob"></div>
+	<div id="MouseBlur"></div>
+
+	<div id="Page">
+		<aside>
+			<img src="images/PufferFishIcon.png" style="grid-area: pfp;" />
+
+			<div class="Card" style="grid-area: social;">
+				<div class="Container">
+					<h1 style="margin-top: 0;">Evan Fish</h1>
+
+					<p><i class="fa-solid fa-location-dot"></i>&emsp;Seattle, WA</p>
+					<p><i class="fa-solid fa-envelope"></i>&emsp;<a href="mailto:evanjfish@gmail.com" style="text-decoration: none;">evanjfish@gmail.com</a></p>
+				</div>
+			</div>
+		</aside>
+
+		<main>
+			<div class="Card"></div>
+			<div class="Card"></div>
+			<div class="Card"></div>
+		</main>
+	</div>
+
+	<script>
+		const container = document.getElementById("Page");
+		const blob = document.getElementById("MouseBlob");
+		var blobTimer = setTimeout(AnimateBlob, 3000);
+		var blobAnimation;
+		
+		document.body.addEventListener("pointermove", function(e) {
+			var relX = e.pageX - container.offsetLeft;
+			var relY = e.pageY - container.offsetTop;
+			
+			blob.animate({
+				left: `${relX}px`,
+				top:  `${relY}px`
+			}, { duration: 3000, fill: "forwards" });
+		});
+
+		document.body.addEventListener("pointerleave", function(e) {
+			blobTimer = setTimeout(AnimateBlob, 3000);
+		});
+
+		document.body.addEventListener("pointerenter", function(e) {
+			clearTimeout(blobTimer);
+			clearInterval(blobAnimation);
+		});
+
+		function AnimateBlob() {
+			blobAnimation = setInterval(() => {
+				var relX = (window.innerWidth  * Math.random()) - container.offsetLeft;
+				var relY = (window.innerHeight * Math.random()) - container.offsetTop;
+
+				blob.animate({
+					left: `${relX}px`,
+					top:  `${relY}px`
+				}, { duration: 3000, fill: "forwards" });
+			}, 2500);
+		}
+	</script>
+</body>
+
+</html>
