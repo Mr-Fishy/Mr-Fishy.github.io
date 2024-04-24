@@ -11,19 +11,39 @@
 	<style>
 		body {
 			margin: 0;
+			padding: 0;
+
 			background-color: rgb(10, 10, 20);
 
-			font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
-			overflow: hidden;
-		}
-
-		h1, h2, h3, h4 {
-			margin: 8px;
+			overflow-x: hidden;
+			overflow-y: auto;
 		}
 
 		h1 {
+			margin: 6px 0px;
 			font-size: 2em;
+		}
+
+		h2 {
+			margin: 4px 0px;
+		}
+
+		h3 {
+			margin: 2px 0px;
+		}
+
+		p,
+		a,
+		code {
+			margin: 2px 0px;
+			font-family: monospace;
+		}
+
+		a {
+			text-decoration: none;
+			color: inherit;
 		}
 
 		#Page {
@@ -31,15 +51,19 @@
 			margin-right: auto;
 			max-width: 1400px;
 
+			position: relative;
+
 			display: grid;
-			grid-template-columns: minmax(200px, 30%) 1fr;
+			grid-template-columns: minmax(250px, 30%) 1fr;
 			grid-template-areas: 'sidebar content';
+
+			z-index: 3;
 		}
 
 		aside {
 			padding: 16px 8px 16px 16px;
-			height: calc(100vh - 32px);
-			
+			height: auto;
+
 			position: sticky;
 			top: 0;
 
@@ -54,7 +78,8 @@
 
 		main {
 			padding: 16px 16px 16px 8px;
-			
+			height: 100%;
+
 			grid-area: content;
 
 			display: grid;
@@ -62,33 +87,36 @@
 		}
 
 		@keyframes Rotate {
-			from { rotate: 0deg; }
-			50%  { scale: 1 1.5; }
-			to   { rotate: 360deg; }
+			from {
+				rotate: 0deg;
+			}
+
+			50% {
+				scale: 1 1.5;
+			}
+
+			to {
+				rotate: 360deg;
+			}
 		}
 
 		#MouseBlob {
-			width: 20rem;
-			height: 20rem;
-			
+			width: 15em;
+			height: 15em;
+
 			position: absolute;
 			left: 50%;
 			top: 50%;
 			translate: -50% -50%;
 
 			border-radius: 50%;
+			background-color: rgba(255, 255, 255, 0.8);
 			background: linear-gradient(to right, aquamarine, blueviolet, orangered);
 			animation: Rotate 20s infinite;
-			opacity: 0.9;
-		}
 
-		#MouseBlur {
-			height: 100%;
-			width: 100%;
-			
-			position: fixed;
+			filter: blur(10vw);
 
-			backdrop-filter: blur(10vmax);
+			z-index: 0;
 		}
 
 		img {
@@ -101,25 +129,31 @@
 			-webkit-user-select: none;
 		}
 
-		span > * {
+		span>* {
 			display: inline-block;
+		}
+
+		code>svg,
+		p>svg {
+			width: 15px;
+			height: auto;
 		}
 
 		.Card {
 			width: 100%;
 
 			border-radius: 8px;
-
-			box-shadow: 4px 4px 8px gray;
-
-			background-color: beige;
-			opacity: 0.5;
+			background-color: rgba(245, 245, 220, 0.5);
+			box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.5);
 		}
 
 		.Container {
 			padding: 16px;
+			width: auto;
+			height: auto;
 
 			display: grid;
+			gap: 8px;
 		}
 
 		.ContentBlock {
@@ -129,13 +163,27 @@
 			background-color: blanchedalmond;
 		}
 
-		@media only screen and (max-width: 600px), only screen and (max-height: 600px) {
+		@media only screen and (max-width: 650px),
+		only screen and (max-height: 600px) {
 			#Page {
 				grid-template-columns: 100%;
+				grid-template-rows: auto 1fr;
+				grid-template-areas: 'sidebar' 'content';
 			}
 
 			aside {
+				padding: 16px 16px 8px 16px;
+				height: auto;
+
 				position: static;
+
+				grid-template-rows: auto;
+				grid-template-columns: auto auto;
+				grid-template-areas: 'pfp social';
+			}
+
+			main {
+				padding: 8px 16px 16px 16px;
 			}
 		}
 	</style>
@@ -143,64 +191,114 @@
 
 <body>
 	<div id="MouseBlob"></div>
-	<div id="MouseBlur"></div>
 
 	<div id="Page">
-		<aside>
+		<aside id="Info">
 			<img src="images/PufferFishIcon.png" style="grid-area: pfp;" />
 
 			<div class="Card" style="grid-area: social;">
 				<div class="Container">
 					<h1 style="margin-top: 0;">Evan Fish</h1>
 
-					<p><i class="fa-solid fa-location-dot"></i>&emsp;Seattle, WA</p>
-					<p><i class="fa-solid fa-envelope"></i>&emsp;<a href="mailto:evanjfish@gmail.com" style="text-decoration: none;">evanjfish@gmail.com</a></p>
+					<!-- Contact -->
+					<hgroup id="Contact">
+						<h3>Contact</h3>
+						<code><a href="mailto:evanjfish@gmail.com"><i class="fa-solid fa-envelope"></i>&emsp;evanjfish@gmail.com</a></code>
+						<br />
+						<code><a href="tel:3608181434"><i class="fa-solid fa-phone"></i>&emsp;(360) 818-1434</a></code>
+					</hgroup>
+
+					<!-- Links -->
+					<hgroup id="Social">
+						<h3>Social</h3>
+						<code><a href="https://github.com/Mr-Fishy"><i class="fa-brands fa-github"></i>&emsp;Github</a></code>
+						<br />
+						<code><a href="https://www.linkedin.com/in/evan-fish/"><i class="fa-brands fa-linkedin"></i>&emsp;LinkedIn</a></code>
+					</hgroup>
+
+					<!-- Education -->
+					<hgroup id="Education">
+						<h3>Education</h3>
+						<p>
+							B.S. Computer Science<br />
+							Seattle Pacific University<br />
+							August 2022 - Present<br />
+						</p>
+						<hr />
+						<p>
+							Diploma<br />
+							Discovery High School,<br />
+							August 2018 - June 2022
+						</p>
+					</hgroup>
 				</div>
+			</div>
+
+			<div class="Card">
+				
 			</div>
 		</aside>
 
 		<main>
-			<div class="Card"></div>
-			<div class="Card"></div>
-			<div class="Card"></div>
+			<div class="Card">
+				<div class="Container">
+					<div class="ContentBlock"></div>
+				</div>
+			</div>
+			<div class="Card">
+				<div class="Container">
+					<div class="ContentBlock"></div>
+				</div>
+			</div>
+			<div class="Card">
+				<div class="Container">
+					<div class="ContentBlock"></div>
+				</div>
+			</div>
+			<div class="Card">
+				<div class="Container">
+					<div class="ContentBlock"></div>
+				</div>
+			</div>
+			<div class="Card">
+				<div class="Container">
+					<div class="ContentBlock"></div>
+				</div>
+			</div>
 		</main>
 	</div>
 
 	<script>
-		const container = document.getElementById("Page");
 		const blob = document.getElementById("MouseBlob");
 		var blobTimer = setTimeout(AnimateBlob, 3000);
 		var blobAnimation;
-		
-		document.body.addEventListener("pointermove", function(e) {
-			var relX = e.pageX - container.offsetLeft;
-			var relY = e.pageY - container.offsetTop;
-			
+
+		document.body.addEventListener("pointermove", function (e) {
 			blob.animate({
-				left: `${relX}px`,
-				top:  `${relY}px`
+				left: `${e.pageX}px`,
+				top: `${e.pageY}px`
 			}, { duration: 3000, fill: "forwards" });
 		});
 
-		document.body.addEventListener("pointerleave", function(e) {
+		document.body.addEventListener("pointerleave", function (e) {
 			blobTimer = setTimeout(AnimateBlob, 3000);
 		});
 
-		document.body.addEventListener("pointerenter", function(e) {
+		document.body.addEventListener("pointerenter", function (e) {
 			clearTimeout(blobTimer);
 			clearInterval(blobAnimation);
 		});
 
 		function AnimateBlob() {
 			blobAnimation = setInterval(() => {
-				var relX = (window.innerWidth  * Math.random()) - container.offsetLeft;
-				var relY = (window.innerHeight * Math.random()) - container.offsetTop;
+				var relX = (window.innerWidth * Math.random());
+				var relY = (window.innerHeight * Math.random());
 
 				blob.animate({
 					left: `${relX}px`,
-					top:  `${relY}px`
+					top: `${relY}px`
 				}, { duration: 3000, fill: "forwards" });
-			}, 2500);
+			}, 3000);
 		}
 	</script>
 </body>
