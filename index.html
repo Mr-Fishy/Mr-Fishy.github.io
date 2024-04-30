@@ -34,11 +34,11 @@
 			margin: 2px 0px;
 		}
 
+		h4,
 		p,
 		a,
 		code {
 			margin: 2px 0px;
-			font-family: monospace;
 		}
 
 		a {
@@ -101,8 +101,8 @@
 		}
 
 		#MouseBlob {
-			width: 15em;
-			height: 15em;
+			width: 15vmax;
+			height: 15vmax;
 
 			position: absolute;
 			left: 50%;
@@ -114,7 +114,7 @@
 			background: linear-gradient(to right, aquamarine, blueviolet, orangered);
 			animation: Rotate 20s infinite;
 
-			filter: blur(10vw);
+			filter: blur(10vmax);
 
 			z-index: 0;
 		}
@@ -137,6 +137,10 @@
 		p>svg {
 			width: 15px;
 			height: auto;
+		}
+
+		hr {
+			border-color: darkslategray;
 		}
 
 		.Card {
@@ -164,7 +168,7 @@
 		}
 
 		@media only screen and (max-width: 650px),
-		only screen and (max-height: 600px) {
+		only screen and (max-height: 770px) {
 			#Page {
 				grid-template-columns: 100%;
 				grid-template-rows: auto 1fr;
@@ -178,7 +182,7 @@
 				position: static;
 
 				grid-template-rows: auto;
-				grid-template-columns: auto auto;
+				grid-template-columns: minmax(250px, 30%) 1fr;
 				grid-template-areas: 'pfp social';
 			}
 
@@ -220,15 +224,15 @@
 					<hgroup id="Education">
 						<h3>Education</h3>
 						<p>
-							B.S. Computer Science<br />
-							Seattle Pacific University<br />
-							August 2022 - Present<br />
+							<code><i class="fa-solid fa-graduation-cap"></i>&emsp;</code>Seattle Pacific University,<br />
+							<i>August 2022 - Present<br />
+							B.S. Computer Science<br /></i>
 						</p>
 						<hr />
 						<p>
-							Diploma<br />
-							Discovery High School,<br />
-							August 2018 - June 2022
+							<code><i class="fa-solid fa-graduation-cap"></i>&emsp;</code>Discovery High School,<br />
+							<i>August 2018 - June 2022<br />
+							Diploma<br /></i>
 						</p>
 					</hgroup>
 				</div>
@@ -242,27 +246,40 @@
 		<main>
 			<div class="Card">
 				<div class="Container">
-					<div class="ContentBlock"></div>
+					<h3>About Me</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 				</div>
 			</div>
 			<div class="Card">
 				<div class="Container">
-					<div class="ContentBlock"></div>
+					<h3>Professional Experience</h3>
+
+					<h4>Technical Designer</h4>
+					<p><i>National Sign Corporation - Seattle, WA</i></p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+					<h4>Project Manager / CAD Designer</h4>
+					<p><i>FIRST Robotics Competition - Team 2471 Camas, WA</i></p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+					<h4>Technician</h4>
+					<p><i>Garrett Integrated Systems - Battle Ground, WA</i></p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 				</div>
 			</div>
 			<div class="Card">
 				<div class="Container">
-					<div class="ContentBlock"></div>
+					<h3>Personal Projects</h3>
 				</div>
 			</div>
 			<div class="Card">
 				<div class="Container">
-					<div class="ContentBlock"></div>
+					<h3>Work Projects</h3>
 				</div>
 			</div>
 			<div class="Card">
 				<div class="Container">
-					<div class="ContentBlock"></div>
+					<h3>Educational Projects</h3>
 				</div>
 			</div>
 		</main>
