@@ -123,7 +123,6 @@
 			width: 100%;
 			height: auto;
 
-			user-drag: none;
 			-webkit-user-drag: none;
 			user-select: none;
 			-webkit-user-select: none;
@@ -167,8 +166,7 @@
 			background-color: blanchedalmond;
 		}
 
-		@media only screen and (max-width: 650px),
-		only screen and (max-height: 770px) {
+		@media only screen and (max-width: 900px) {
 			#Page {
 				grid-template-columns: 100%;
 				grid-template-rows: auto 1fr;
@@ -182,7 +180,7 @@
 				position: static;
 
 				grid-template-rows: auto;
-				grid-template-columns: minmax(250px, 30%) 1fr;
+				grid-template-columns: 1fr minmax(250px, 30%);
 				grid-template-areas: 'pfp social';
 			}
 
@@ -225,14 +223,14 @@
 						<h3>Education</h3>
 						<p>
 							<code><i class="fa-solid fa-graduation-cap"></i>&emsp;</code>Seattle Pacific University,<br />
-							<i>August 2022 - Present<br />
-							B.S. Computer Science<br /></i>
+							<i>	&emsp;&emsp;August 2022 - Present<br />
+								&emsp;&emsp;B.S. Computer Science<br /></i>
 						</p>
 						<hr />
 						<p>
 							<code><i class="fa-solid fa-graduation-cap"></i>&emsp;</code>Discovery High School,<br />
-							<i>August 2018 - June 2022<br />
-							Diploma<br /></i>
+							<i>	&emsp;&emsp;August 2018 - June 2022<br />
+								&emsp;&emsp;Diploma<br /></i>
 						</p>
 					</hgroup>
 				</div>
@@ -250,36 +248,46 @@
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 				</div>
 			</div>
+
+			<div class="Card">
+				<div class="Container">
+					<h3>Personal Projects</h3>
+
+					<h4>Ocean Engine</h4> <!-- https://github.com/Mr-Fishy/Ocean -->
+
+
+				</div>
+			</div>
+			
+			<div class="Card">
+				<div class="Container">
+					<h3>Educational Projects</h3>
+
+					<h4>Abstract List Implementation</h4> <!-- https://github.com/csc2431-spring2024/list-Mr-Fishy -->
+					
+					<h4>Expression Tree's</h4> <!-- https://github.com/csc2431-spring2024/expression-tree-Mr-Fishy -->
+
+					<h4>Infix to Postfix Conversion</h4> <!-- https://github.com/csc2431-spring2024/infix-to-postfix-Mr-Fishy -->
+				</div>
+			</div>
+
 			<div class="Card">
 				<div class="Container">
 					<h3>Professional Experience</h3>
 
-					<h4>Technical Designer</h4>
-					<p><i>National Sign Corporation - Seattle, WA</i></p>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+					<!-- TODO: Align Dates To Right Side To Give Better Text Balance -->
 
-					<h4>Project Manager / CAD Designer</h4>
-					<p><i>FIRST Robotics Competition - Team 2471 Camas, WA</i></p>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+					<h4>Technical Designer</h4>
+					<p><i>National Sign Corporation - Seattle, WA &#8226; Nov. 2022 to Sep. 2024</i></p>
+					<p>Working at NSC, I completed technical drawings to manufacturing and local code requirements. As well as assisted in improving SEO and website design. I also began development and expansion on Corel Draw features to improve designer workflow and allow for more optimized functionality. </p>
+
+					<h4>Project Manager & Robotics Designer</h4>
+					<p><i>FIRST Robotics Competition - Team 2471 Camas, WA &#8226; Sept. 2018 to July 2022</i></p>
+					<p>During my time in FIRST Robotics, I learned machine skills for manual and CNC manufacturing. I also learned and taught Computer Aided Design skills and methods using Onshape. As well as designed and programmed multiple custom features for Onshape that allowed users within FIRST Robotics to improve their design workflow.</p>
 
 					<h4>Technician</h4>
-					<p><i>Garrett Integrated Systems - Battle Ground, WA</i></p>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-				</div>
-			</div>
-			<div class="Card">
-				<div class="Container">
-					<h3>Personal Projects</h3>
-				</div>
-			</div>
-			<div class="Card">
-				<div class="Container">
-					<h3>Work Projects</h3>
-				</div>
-			</div>
-			<div class="Card">
-				<div class="Container">
-					<h3>Educational Projects</h3>
+					<p><i>Garrett Integrated Systems - Battle Ground, WA &#8226; July 2018 to Feb. 2021</i></p>
+					<p>At GIS, I developed working standards for home and commercial equipment racks. Completing pre-installation, cable management, and design layout requests to improve and pursue a higher level of quality. Determined hardware requirements for software and completed server and network maintenance. </p>
 				</div>
 			</div>
 		</main>
@@ -314,8 +322,8 @@
 				blob.animate({
 					left: `${relX}px`,
 					top: `${relY}px`
-				}, { duration: 3000, fill: "forwards" });
-			}, 3000);
+				}, { duration: 5000, fill: "forwards" });
+			}, 6000);
 		}
 	</script>
 </body>
