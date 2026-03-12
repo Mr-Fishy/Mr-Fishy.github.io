@@ -35,7 +35,7 @@ plugins:
 # Github Pages Requirements
 lsi: false # Disable LSI (Latent Semantic Indexing) for performance reasons.
 safe: true # Set to true to ensure your site is safe for GitHub Pages.
-source: ./src # Set the source directory for your Jekyll site.
+source: . # Set the source directory for your Jekyll site.
 destination: ./_site # Set the destination directory.
 incremental: true # Disable incremental builds for simplicity.
 highlighter: rouge # Use Rouge for syntax highlighting.
