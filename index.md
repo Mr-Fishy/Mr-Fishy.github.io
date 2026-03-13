@@ -9,3 +9,5 @@ layout: home
 I am a Computer Science student completing my B.S. at Seattle Pacific University.
 
 This site serves as a central hub for my academic projects, research papers, and technical explorations. Feel free to explore my portfolio and CV to see what I'm currently building!
+
+Feel free to take a look at my [CV](./cv) and [portfolio](./portfolio)!
