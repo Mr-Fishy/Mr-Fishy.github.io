@@ -4,7 +4,6 @@
 
 layout: home
 ---
-## Welcome
 
 I am a Computer Science student completing my B.S. at Seattle Pacific University.
 
