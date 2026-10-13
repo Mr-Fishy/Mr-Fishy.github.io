@@ -28,6 +28,36 @@ export interface Education {
   details?: string;
 }
 
+export interface CourseworkMedia {
+  type: "image" | "gif" | "video";
+  url: string;
+  caption?: string;
+  alt?: string;
+}
+
+export interface CourseworkDeliverable {
+  label: string;
+  url: string;
+  type: "github" | "pdf" | "demo" | "report" | "external";
+}
+
+export interface CourseworkProject {
+  id: string;
+  title: string;
+  courseCode: string;
+  courseName: string;
+  quarter: string; // e.g. "Winter 2025", "Autumn 2024"
+  tagline: string;
+  description: string;
+  longDescription?: string[];
+  category: "Computer Science" | "Interactive Art" | "Mathematics" | "Systems & Engineering";
+  featured?: boolean;
+  tags: string[];
+  deliverables: CourseworkDeliverable[];
+  media?: CourseworkMedia[];
+  keyOutcomes?: string[];
+}
+
 export interface PortfolioData {
   name: string;
   titles: string[];
@@ -50,6 +80,7 @@ export interface PortfolioData {
   leadership: Experience[];
   education: Education[];
   projects: Project[];
+  coursework: CourseworkProject[];
 }
 
 export const portfolioData: PortfolioData = {
@@ -308,30 +339,6 @@ export const portfolioData: PortfolioData = {
       metrics: "Improved manufacturing drafting turnaround",
     },
     {
-      id: "greedy-task-scheduling",
-      title: "Unit-Time Greedy Task Scheduling",
-      tagline:
-        "Algorithmic optimization for task scheduling with deadlines and penalties.",
-      description:
-        "Algorithm implementation designing and optimizing solutions to unit-time task scheduling problems with strict deadlines and penalty avoidance using greedy heuristics and disjoint sets.",
-      category: "Tools",
-      featured: false,
-      tags: ["Python", "Algorithms", "Optimization", "Data Structures"],
-      githubUrl: "https://github.com/Mr-Fishy/greedy-task-scheduling",
-    },
-    {
-      id: "fft-polynomial-mult",
-      title: "FFT Divide-and-Conquer Multiplication",
-      tagline:
-        "High-performance polynomial multiplication using Fast Fourier Transform.",
-      description:
-        "Divide-and-conquer implementation of polynomial multiplication utilizing the Fast Fourier Transform (FFT) algorithm, achieving O(n log n) asymptotic running time.",
-      category: "Tools",
-      featured: false,
-      tags: ["C++", "Python", "Algorithms", "FFT", "Mathematics"],
-      githubUrl: "https://github.com/Mr-Fishy/fft-polynomial-multiplication",
-    },
-    {
       id: "ocean-engine",
       title: "Ocean Game Engine",
       tagline:
@@ -342,6 +349,97 @@ export const portfolioData: PortfolioData = {
       featured: false,
       tags: ["C++", "Systems Architecture", "Game Engine", "OpenGL"],
       githubUrl: "https://github.com/Lefihm/Ocean",
+    },
+  ],
+  coursework: [
+    {
+      id: "greedy-task-scheduling",
+      title: "Unit-Time Greedy Task Scheduling",
+      courseCode: "CSC 3430",
+      courseName: "Algorithm Design & Analysis",
+      quarter: "Autumn 2025",
+      tagline:
+        "Algorithmic optimization for task scheduling with deadlines and penalties.",
+      description:
+        "Design and implementation of an optimal greedy algorithm for unit-time task scheduling with deadlines and penalties using disjoint-set (union-find) data structures.",
+      longDescription: [
+        "Analyzed the matroids property underlying unit-time task scheduling with penalties to prove greedy choice optimality.",
+        "Engineered disjoint-set tree structures with path compression to achieve nearly linear time complexity for slot finding.",
+        "Validated empirical runtime against asymptotic theoretical bounds across extensive synthetic test workloads.",
+      ],
+      category: "Computer Science",
+      featured: true,
+      tags: ["Python", "Algorithms", "Greedy Heuristics", "Disjoint Sets", "Complexity Analysis"],
+      deliverables: [
+        {
+          label: "GitHub Repository",
+          url: "https://github.com/Mr-Fishy/greedy-task-scheduling",
+          type: "github",
+        },
+      ],
+      keyOutcomes: [
+        "Proven greedy matroid optimality proof",
+        "Disjoint-set slot allocation in near-linear time",
+      ],
+    },
+    {
+      id: "fft-polynomial-mult",
+      title: "FFT Divide-and-Conquer Multiplication",
+      courseCode: "CSC 3430",
+      courseName: "Algorithm Design & Analysis",
+      quarter: "Autumn 2025",
+      tagline:
+        "High-performance polynomial multiplication using Fast Fourier Transform.",
+      description:
+        "Divide-and-conquer implementation of polynomial multiplication utilizing the Fast Fourier Transform (FFT) algorithm, achieving O(n log n) asymptotic running time.",
+      longDescription: [
+        "Implemented recursive and iterative Cooley-Tukey Radix-2 Fast Fourier Transform for complex point-value evaluations.",
+        "Reduced polynomial convolution from naive O(n²) to optimal O(n log n) asymptotic running time.",
+        "Benchmarked numerical accuracy and floating-point stability across large coefficient degrees.",
+      ],
+      category: "Computer Science",
+      featured: true,
+      tags: ["C++", "Python", "Algorithms", "FFT", "Signal Processing", "Discrete Math"],
+      deliverables: [
+        {
+          label: "GitHub Repository",
+          url: "https://github.com/Mr-Fishy/fft-polynomial-multiplication",
+          type: "github",
+        },
+      ],
+      keyOutcomes: [
+        "O(n log n) divide-and-conquer implementation",
+        "Comparative benchmark against schoolbook multiplication",
+      ],
+    },
+    {
+      id: "interactive-art-study",
+      title: "Interactive Generative Visuals & Creative Computing",
+      courseCode: "ART 3210",
+      courseName: "Interactive Computing and Art",
+      quarter: "Spring 2026",
+      tagline:
+        "Exploration of generative algorithmic aesthetics, real-time shaders, and sensory interaction.",
+      description:
+        "Creative computing installation exploring responsive computational art, particle systems, and real-time interaction designed as part of the Interactive Computing and Art minor.",
+      longDescription: [
+        "Constructed real-time responsive visual systems exploring natural patterns, fluid dynamics, and generative geometry.",
+        "Integrated interactive inputs to allow audience engagement to influence color palette, velocity fields, and visual entropy.",
+      ],
+      category: "Interactive Art",
+      featured: true,
+      tags: ["Creative Coding", "Interactive Art", "Shaders", "Generative Design"],
+      deliverables: [
+        {
+          label: "Project Write-up & Code",
+          url: "https://github.com/Mr-Fishy",
+          type: "github",
+        },
+      ],
+      keyOutcomes: [
+        "Real-time interactive generative visual piece",
+        "Exhibited in university creative computing portfolio",
+      ],
     },
   ],
 };

@@ -93,6 +93,18 @@ export default function PrimaryLayout({ children }: PrimaryLayoutProps) {
               Projects
             </Link>
             <Link
+              to="/coursework"
+              activeProps={{
+                className: "text-foreground font-semibold bg-muted",
+              }}
+              inactiveProps={{
+                className: "text-muted-foreground hover:text-foreground",
+              }}
+              className="px-3 py-1.5 rounded-md transition-colors"
+            >
+              Coursework
+            </Link>
+            <Link
               to="/resume"
               activeProps={{
                 className: "text-foreground font-semibold bg-muted",
