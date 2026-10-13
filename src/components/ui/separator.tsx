@@ -11,9 +11,7 @@ const Separator = React.forwardRef<HTMLDivElement, SeparatorProps>(
     { className, orientation = "horizontal", decorative = true, ...props },
     ref,
   ) => {
-    const ariaProps = decorative
-      ? {}
-      : { "aria-orientation": orientation };
+    const ariaProps = decorative ? {} : { "aria-orientation": orientation };
 
     return (
       <div

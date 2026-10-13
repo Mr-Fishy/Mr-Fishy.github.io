@@ -54,7 +54,8 @@ function AboutPage() {
             Engineering with Purpose & Precision
           </h1>
           <p className="text-muted-foreground text-base max-w-2xl">
-            A look into my journey as a developer, systems architect, and project lead.
+            A look into my journey as a developer, systems architect, and
+            project lead.
           </p>
         </div>
 
@@ -62,43 +63,70 @@ function AboutPage() {
         <section className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
           <div className="md:col-span-2 space-y-4 text-base sm:text-lg leading-relaxed text-foreground/90">
             <p>
-              Hello! I'm <strong>{portfolioData.name}</strong>, a developer, system designer, and technical project manager. Over the past several years, I have worked across the stack to build high-scale web platforms, distributed processing systems, and engineering workflows.
+              Hello! I'm <strong>{portfolioData.name}</strong>, Director of IT &
+              Software at Garrett Integrated Systems and a Computer Science
+              student at Seattle Pacific University (minoring in Interactive
+              Computing and Art).
             </p>
             <p className="text-muted-foreground text-sm sm:text-base">
-              My journey began with a curiosity for how computers coordinate complex tasks across networks. That curiosity evolved into leading architectural initiatives—designing fault-tolerant microservices, optimizing database access patterns, and crafting accessible, responsive web interfaces.
+              My engineering background spans enterprise systems architecture
+              and low-level software engineering. At Garrett Integrated Systems,
+              I lead company-wide process modernization across three
+              locations—engineering automated software workflows across
+              Salesforce, Jetbuilt, QuickBooks, and Microsoft SharePoint, while
+              directing cybersecurity policies and collaborating with executive
+              leadership.
             </p>
             <p className="text-muted-foreground text-sm sm:text-base">
-              Beyond pure coding, I thrive at the intersection of product strategy and engineering execution. As a project manager and system designer, I help translate ambiguous requirements into actionable roadmaps, ensuring that engineering decisions directly serve business outcomes and user delight.
+              On the systems side, I've designed embedded telemetry
+              hardware/software for Baja SAE race vehicles, explored game engine
+              rendering pipelines in C++, and developed custom CAD/BoM
+              automation tools in Visual Basic. In addition, I serve as the ASSP
+              Officer of Finance at SPU, leading financial policy and committee
+              allocations.
             </p>
 
             <div className="flex items-center gap-4 text-sm text-muted-foreground pt-2">
               <span className="flex items-center gap-1.5">
-                <MapPin className="w-4 h-4 text-primary" /> {portfolioData.location}
+                <MapPin className="w-4 h-4 text-primary" />{" "}
+                {portfolioData.location}
               </span>
               <span>•</span>
               <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-emerald-500" /> Open for opportunities
+                <CheckCircle2 className="w-4 h-4 text-emerald-500" /> Open for
+                opportunities
               </span>
             </div>
           </div>
 
           <Card className="bg-card/50 border-border/80">
             <CardHeader className="pb-3">
-              <CardTitle className="text-base font-bold">Quick Overview</CardTitle>
+              <CardTitle className="text-base font-bold">
+                Quick Overview
+              </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3 text-xs sm:text-sm">
               <div>
-                <span className="font-semibold block text-muted-foreground">Focus Areas</span>
-                <span>Distributed Systems, React/Next.js/TanStack, Technical PM</span>
+                <span className="font-semibold block text-muted-foreground">
+                  Focus Areas
+                </span>
+                <span>
+                  System Design, Enterprise Workflows, Embedded Telemetry, IT
+                  Leadership
+                </span>
               </div>
               <Separator />
               <div>
-                <span className="font-semibold block text-muted-foreground">Primary Languages</span>
-                <span>TypeScript, JavaScript, Go, Python, SQL</span>
+                <span className="font-semibold block text-muted-foreground">
+                  Primary Languages
+                </span>
+                <span>C++, Python, TypeScript, Rust, Go, Visual Basic</span>
               </div>
               <Separator />
               <div>
-                <span className="font-semibold block text-muted-foreground">Location</span>
+                <span className="font-semibold block text-muted-foreground">
+                  Location
+                </span>
                 <span>{portfolioData.location}</span>
               </div>
             </CardContent>
@@ -107,7 +135,9 @@ function AboutPage() {
 
         {/* Core Principles */}
         <section className="space-y-6">
-          <h2 className="text-2xl font-bold tracking-tight">Core Engineering Values</h2>
+          <h2 className="text-2xl font-bold tracking-tight">
+            Core Engineering Values
+          </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {principles.map((p) => {
               const Icon = p.icon;
@@ -117,7 +147,9 @@ function AboutPage() {
                     <Icon className="w-5 h-5" />
                   </div>
                   <div className="space-y-1">
-                    <h3 className="font-bold text-base text-foreground">{p.title}</h3>
+                    <h3 className="font-bold text-base text-foreground">
+                      {p.title}
+                    </h3>
                     <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
                       {p.desc}
                     </p>
@@ -131,9 +163,12 @@ function AboutPage() {
         {/* Skills & Technologies Breakdown */}
         <section className="space-y-6">
           <div className="space-y-1">
-            <h2 className="text-2xl font-bold tracking-tight">Skills & Technologies</h2>
+            <h2 className="text-2xl font-bold tracking-tight">
+              Skills & Technologies
+            </h2>
             <p className="text-muted-foreground text-sm">
-              Tools, frameworks, and methodologies I leverage to solve complex problems.
+              Tools, frameworks, and methodologies I leverage to solve complex
+              problems.
             </p>
           </div>
 
@@ -148,7 +183,11 @@ function AboutPage() {
                 </h3>
                 <div className="flex flex-wrap gap-2 pt-1">
                   {skillGroup.items.map((item) => (
-                    <Badge key={item} variant="secondary" className="px-2.5 py-1 text-xs">
+                    <Badge
+                      key={item}
+                      variant="secondary"
+                      className="px-2.5 py-1 text-xs"
+                    >
                       {item}
                     </Badge>
                   ))}
@@ -175,4 +214,3 @@ function AboutPage() {
     </PrimaryLayout>
   );
 }
-

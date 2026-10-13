@@ -24,10 +24,18 @@ interface TabsProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
   (
-    { defaultValue = "", value: controlledValue, onValueChange, className, children, ...props },
+    {
+      defaultValue = "",
+      value: controlledValue,
+      onValueChange,
+      className,
+      children,
+      ...props
+    },
     ref,
   ) => {
-    const [uncontrolledValue, setUncontrolledValue] = React.useState(defaultValue);
+    const [uncontrolledValue, setUncontrolledValue] =
+      React.useState(defaultValue);
     const isControlled = controlledValue !== undefined;
     const currentValue = isControlled ? controlledValue : uncontrolledValue;
 
@@ -42,8 +50,14 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
     );
 
     return (
-      <TabsContext.Provider value={{ value: currentValue, onValueChange: handleValueChange }}>
-        <div ref={ref} className={cn("flex flex-col gap-2", className)} {...props}>
+      <TabsContext.Provider
+        value={{ value: currentValue, onValueChange: handleValueChange }}
+      >
+        <div
+          ref={ref}
+          className={cn("flex flex-col gap-2", className)}
+          {...props}
+        >
           {children}
         </div>
       </TabsContext.Provider>
@@ -127,4 +141,3 @@ const TabsContent = React.forwardRef<HTMLDivElement, TabsContentProps>(
 TabsContent.displayName = "TabsContent";
 
 export { Tabs, TabsList, TabsTrigger, TabsContent };
-

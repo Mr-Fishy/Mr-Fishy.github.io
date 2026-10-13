@@ -35,214 +35,313 @@ export interface PortfolioData {
   bio: string;
   location: string;
   email: string;
+  phone?: string;
   socials: {
     github: string;
     linkedin: string;
     email: string;
+    resumePdf?: string;
   };
   skills: {
     category: string;
     items: string[];
   }[];
   experiences: Experience[];
+  leadership: Experience[];
   education: Education[];
   projects: Project[];
 }
 
 export const portfolioData: PortfolioData = {
   name: "Evan Fish",
-  titles: ["Developer", "System Designer", "Project Manager"],
+  titles: [
+    "Director of IT & Software",
+    "System Designer",
+    "Computer Science Researcher",
+  ],
   tagline:
-    "Building resilient software systems, crafting performant web applications, and leading technical projects from concept to delivery.",
-  bio: "I'm a full-stack engineer, system designer, and technical project manager passionate about elegant architecture, maintainable software, and delightful user experiences. I bridge the gap between low-level system design, scalable web infrastructure, and high-impact product execution.",
-  location: "United States",
-  email: "contact@mr-fishy.dev",
+    "Designing resilient software architectures, streamlining enterprise workflows, and building high-performance systems from embedded devices to the edge.",
+  bio: "I'm a computer science researcher, system designer, and IT director based in Seattle, WA. Currently serving as Director of IT & Software at Garrett Integrated Systems, I lead company-wide process modernization across multiple locations, architect custom software integrations, and design secure, scalable digital infrastructure.",
+  location: "Seattle, WA 98119",
+  email: "fishe1@spu.edu",
+  phone: "360-818-1434",
   socials: {
     github: "https://github.com/Mr-Fishy",
     linkedin: "https://linkedin.com/in/evan-fish",
-    email: "mailto:contact@mr-fishy.dev",
+    email: "mailto:fishe1@spu.edu",
+    resumePdf: "/Evan_Fish_2026_September.pdf",
   },
   skills: [
     {
-      category: "Frontend Development",
+      category: "Programming Languages",
       items: [
-        "React",
-        "TypeScript",
-        "Next.js",
-        "TanStack Router & Start",
-        "Tailwind CSS",
-        "shadcn/ui",
-        "Vite",
-        "Responsive UI/UX",
-      ],
-    },
-    {
-      category: "Backend & Systems",
-      items: [
-        "Node.js",
-        "Go",
+        "C++",
         "Python",
-        "Distributed Systems",
-        "REST & GraphQL APIs",
-        "PostgreSQL",
-        "Redis",
-        "Microservices Architecture",
+        "TypeScript",
+        "Rust",
+        "Go",
+        "HTML",
+        "JavaScript",
+        "CSS",
+        "Visual Basic",
       ],
     },
     {
-      category: "DevOps & Infrastructure",
+      category: "Systems & Architecture",
       items: [
-        "Docker",
-        "Kubernetes",
-        "CI/CD Pipelines",
-        "Linux Systems",
-        "Cloud Deployment (AWS/GCP)",
-        "Terraform",
-        "Monitoring & Telemetry",
+        "System Design",
+        "System Optimization",
+        "Technical Documentation",
+        "Technical Policy",
+        "Cybersecurity Policies",
+        "Embedded Systems",
       ],
     },
     {
-      category: "System Design & Leadership",
+      category: "Platforms & Enterprise Tools",
       items: [
-        "Technical Project Management",
-        "Domain-Driven Design",
-        "Agile & Scrum Delivery",
-        "Cross-Functional Leadership",
-        "Code Reviews & Mentorship",
+        "Microsoft 365",
+        "Microsoft SharePoint",
+        "Microsoft Forms",
+        "Salesforce",
+        "QuickBooks",
+        "Jetbuilt",
+      ],
+    },
+    {
+      category: "Web & Edge Technologies",
+      items: [
+        "React 19",
+        "TanStack Start",
+        "Cloudflare Workers",
+        "Tailwind CSS v4",
+        "Vite",
+        "REST APIs",
       ],
     },
   ],
   experiences: [
     {
-      id: "lead-sys-designer",
-      role: "Lead Systems Designer & Senior Engineer",
-      company: "Apex Systems Architecture",
-      location: "Remote",
-      period: "2023 – Present",
+      id: "director-it-gis",
+      role: "Director of IT & Software",
+      company: "Garrett Integrated Systems",
+      location: "Remote, Seattle, WA",
+      period: "June 2026 - Present",
       description: [
-        "Spearheaded the redesign and modularization of core microservices, increasing system throughput by 42% and reducing latency across peak traffic hours.",
-        "Architected end-to-end data processing pipelines using distributed queues and cache synchronization patterns.",
-        "Mentored cross-functional teams of 8+ engineers across frontend, backend, and site reliability disciplines.",
+        "Led company-wide process development across 3 locations.",
+        "Designed and implemented software workflows across Salesforce, Jetbuilt, QuickBooks, and Microsoft SharePoint.",
+        "Developed cybersecurity policies, training, and enforcement for employees.",
+        "Consulted with C-level leadership to drive technological improvements and innovation.",
       ],
-      skills: ["System Architecture", "Go", "TypeScript", "Distributed Systems", "Docker", "PostgreSQL"],
+      skills: [
+        "Salesforce",
+        "Jetbuilt",
+        "QuickBooks",
+        "Microsoft SharePoint",
+        "Cybersecurity Policy",
+        "System Design",
+      ],
     },
     {
-      id: "fullstack-pm",
-      role: "Full-Stack Engineer & Project Manager",
-      company: "Horizon Tech Labs",
-      location: "Hybrid",
-      period: "2021 – 2023",
+      id: "it-intern-gis",
+      role: "IT & Software Intern",
+      company: "Garrett Integrated Systems",
+      location: "Remote, Seattle, WA",
+      period: "August 2025 - June 2026",
       description: [
-        "Delivered critical enterprise client portals using React, TypeScript, and modern headless APIs, cutting sprint cycle times by 30%.",
-        "Managed agile project lifecycles, translating product roadmaps into technical specifications, tickets, and release milestones.",
-        "Introduced automated testing frameworks (Vitest, Playwright) that improved test coverage from 45% to over 85%.",
+        "Provided software analysis reports to leadership for company workflow alignment, sustainability, and customizability.",
+        "Supported and implemented tools to transfer company data across software systems.",
       ],
-      skills: ["React", "Node.js", "Agile PM", "REST APIs", "Vitest", "Tailwind CSS"],
+      skills: [
+        "Workflow Optimization",
+        "Data Migration",
+        "Systems Analysis",
+        "Software Integration",
+      ],
     },
     {
-      id: "software-engineer",
-      role: "Software Engineer",
-      company: "Vanguard Digital",
-      location: "On-site",
-      period: "2019 – 2021",
+      id: "spu-leadership-assistant",
+      role: "Leadership & Involvement Office Assistant",
+      company: "Seattle Pacific University",
+      location: "Seattle, WA",
+      period: "October 2025 - June 2026",
       description: [
-        "Constructed responsive web interfaces and dashboard modules for data visualization and real-time activity feeds.",
-        "Refactored legacy monolith endpoints into high-throughput asynchronous services.",
-        "Collaborated with UI/UX designers to implement scalable component libraries and design tokens.",
+        "Supported building operations and student experience.",
+        "Improved financial policy for 35+ student clubs and developed new forms for position applications, event and budget requests, and voting systems in Microsoft Forms.",
       ],
-      skills: ["JavaScript", "React", "Python", "SQL", "Git", "CSS3"],
+      skills: [
+        "Microsoft Forms",
+        "Microsoft 365",
+        "Financial Policy",
+        "Operations",
+      ],
+    },
+    {
+      id: "spu-cs-tutor",
+      role: "Computer Science Tutor",
+      company: "Seattle Pacific University",
+      location: "Seattle, WA",
+      period: "August 2024 - December 2024",
+      description: [
+        "Assisted in the learning and development of 100+ students within computer science courses.",
+        "Provided code feedback, debugging help, and system design assistance, focusing on student growth over providing direct answers.",
+      ],
+      skills: [
+        "C++",
+        "Python",
+        "Debugging",
+        "System Design",
+        "Code Reviews & Mentorship",
+      ],
+    },
+    {
+      id: "technical-designer-nsc",
+      role: "Technical Designer",
+      company: "National Sign Corporation",
+      location: "Hybrid, Seattle, WA",
+      period: "November 2022 - September 2024",
+      description: [
+        "Drafted production drawings for in-house and sub-contracted manufacturing.",
+        "Assisted in the development of BoM tracking standards and company drawing templates.",
+        "Developed tools for Corel Draw to improve designer workflow.",
+      ],
+      skills: [
+        "Visual Basic",
+        "CorelDraw Automation",
+        "Production Drafting",
+        "BoM Tracking Standards",
+      ],
+    },
+  ],
+  leadership: [
+    {
+      id: "assp-officer-finance",
+      role: "ASSP Officer of Finance",
+      company: "Associated Students of Seattle Pacific [University]",
+      location: "Seattle, WA",
+      period: "May 2026 - Present",
+      description: [
+        "Led in financial policy development and improvement, club leadership training, and proposal processes.",
+        "Led committees discussing budget requests as well as departmental budget allocations.",
+      ],
+      skills: [
+        "Financial Policy",
+        "Budget Allocation",
+        "Committee Leadership",
+        "Governance",
+      ],
+    },
+    {
+      id: "director-business-baja",
+      role: "Director of Business",
+      company: "Falcon Racing, Seattle Pacific University Baja SAE",
+      location: "Seattle, WA",
+      period: "May 2025 - June 2026",
+      description: [
+        "Developed role responsibilities, sponsor relationships, media practices, and university relations.",
+      ],
+      skills: [
+        "Sponsor Relationships",
+        "Business Strategy",
+        "Media Practices",
+        "University Relations",
+      ],
     },
   ],
   education: [
     {
-      degree: "B.S. in Computer Science",
-      institution: "State University",
-      period: "2015 – 2019",
-      details: "Focus on Distributed Systems, Software Engineering, and Database Design.",
-    },
-    {
-      degree: "Project Management Professional (PMP) / Agile Certification",
-      institution: "Project Management Institute",
-      period: "2022",
-      details: "Specialization in Agile Delivery, Lean Portfolio Management, and Technical Leadership.",
+      degree: "Bachelor of Science, Computer Science",
+      institution: "Seattle Pacific University",
+      period: "Expected June 2027",
+      details: "Minor in Interactive Computing and Art • Seattle, WA",
     },
   ],
   projects: [
     {
-      id: "distributed-task-orchestrator",
-      title: "FlowGrid Orchestrator",
-      tagline: "High-concurrency distributed job scheduling and workflow engine",
+      id: "falcon-racing-baja",
+      title: "Falcon Racing SAE Embedded Telemetry",
+      tagline:
+        "Vehicle telemetry and embedded sensor integration for Baja SAE racing vehicle.",
       description:
-        "A resilient, fault-tolerant workflow orchestrator designed to coordinate long-running distributed compute tasks with automatic retries, heartbeat health monitoring, and an interactive real-time observability dashboard.",
+        "Designed and led development of an embedded sensor monitoring system on a Baja SAE off-road race car to capture engine RPM, CVT temperature, and vital vehicle electrical interfaces under racing conditions.",
       category: "Systems",
       featured: true,
-      tags: ["Go", "Distributed Systems", "Redis", "Docker", "gRPC"],
-      metrics: "Processes 50K+ tasks/min with sub-10ms scheduling latency",
-      githubUrl: "https://github.com/Mr-Fishy",
-      liveUrl: "https://github.com/Mr-Fishy",
+      tags: ["C++", "Embedded Systems", "Hardware Sensors", "CAN Bus"],
+      metrics: "Real-time telemetry on custom racing chassis",
+      githubUrl: "https://github.com/uniqueident/Baja-2025",
     },
     {
-      id: "tanstack-portfolio",
-      title: "Personal Portfolio & Digital Garden",
-      tagline: "Ultra-fast modern personal site built with TanStack Start and shadcn/ui",
+      id: "portfolio-worker",
+      title: "evanjfish.app Edge Portfolio",
+      tagline:
+        "Server-rendered edge application deployed on Cloudflare Workers.",
       description:
-        "A responsive, accessible personal portfolio showcasing interactive sticky layouts, dynamic bubble docks, fluid typography, dark-mode tokens, and SSR hydration resilience.",
+        "Modern, performant personal portfolio application built with TanStack Start, React 19, and Tailwind CSS v4. Pre-configured and compiled for Cloudflare Workers edge runtime serving evanjfish.app with instant load times.",
       category: "Full-Stack",
       featured: true,
-      tags: ["React 19", "TanStack Start", "Tailwind CSS v4", "TypeScript", "shadcn/ui"],
-      metrics: "100/100 Lighthouse Performance & Accessibility",
+      tags: [
+        "TanStack Start",
+        "React 19",
+        "Cloudflare Workers",
+        "TypeScript",
+        "Tailwind CSS",
+      ],
+      metrics: "Edge SSR on Cloudflare Workers",
       githubUrl: "https://github.com/Mr-Fishy/Mr-Fishy.github.io",
-      liveUrl: "https://mr-fishy.github.io",
+      liveUrl: "https://evanjfish.app",
     },
     {
-      id: "schema-validator-tool",
-      title: "FastType Schema CLI",
-      tagline: "Lightweight schema generator and type validation CLI utility",
+      id: "coreldraw-automation",
+      title: "CorelDraw Automation & BoM Tools",
+      tagline:
+        "Custom workflow acceleration tools and BoM automation for technical manufacturing.",
       description:
-        "A CLI developer tool for generating strict TypeScript type definitions and runtime validation schemas directly from OpenAPI and GraphQL endpoints.",
+        "Developed internal toolsets for Corel Draw utilizing Visual Basic scripts to automate drafting workflows, establish drawing templates, and standardize Bill of Materials (BoM) tracking.",
       category: "Tools",
       featured: true,
-      tags: ["TypeScript", "Node.js", "AST", "CLI", "OpenAPI"],
-      metrics: "Downloaded 15k+ times with zero runtime dependencies",
-      githubUrl: "https://github.com/Mr-Fishy",
+      tags: [
+        "Visual Basic",
+        "CorelDraw",
+        "Workflow Automation",
+        "BoM Tracking",
+      ],
+      metrics: "Improved manufacturing drafting turnaround",
     },
     {
-      id: "cloud-telemetry-dashboard",
-      title: "PulseMetrics Telemetry",
-      tagline: "Real-time analytics and telemetry collector for microservice clusters",
+      id: "greedy-task-scheduling",
+      title: "Unit-Time Greedy Task Scheduling",
+      tagline:
+        "Algorithmic optimization for task scheduling with deadlines and penalties.",
       description:
-        "An observability dashboard tracking p99 latencies, error budget burn rates, and memory saturation profiles across containerized deployments.",
+        "Algorithm implementation designing and optimizing solutions to unit-time task scheduling problems with strict deadlines and penalty avoidance using greedy heuristics and disjoint sets.",
+      category: "Tools",
+      featured: false,
+      tags: ["Python", "Algorithms", "Optimization", "Data Structures"],
+      githubUrl: "https://github.com/Mr-Fishy/greedy-task-scheduling",
+    },
+    {
+      id: "fft-polynomial-mult",
+      title: "FFT Divide-and-Conquer Multiplication",
+      tagline:
+        "High-performance polynomial multiplication using Fast Fourier Transform.",
+      description:
+        "Divide-and-conquer implementation of polynomial multiplication utilizing the Fast Fourier Transform (FFT) algorithm, achieving O(n log n) asymptotic running time.",
+      category: "Tools",
+      featured: false,
+      tags: ["C++", "Python", "Algorithms", "FFT", "Mathematics"],
+      githubUrl: "https://github.com/Mr-Fishy/fft-polynomial-multiplication",
+    },
+    {
+      id: "ocean-engine",
+      title: "Ocean Game Engine",
+      tagline:
+        "Exploration of low-level graphics and systems game engine architecture.",
+      description:
+        "Collaborative systems programming project exploring core game engine architecture concepts, graphics rendering pipelines, entity-component systems, and low-level resource management.",
       category: "Systems",
       featured: false,
-      tags: ["Python", "React", "WebSockets", "TimescaleDB", "Tailwind CSS"],
-      metrics: "Handles 100K metrics/sec streaming ingestion",
-      githubUrl: "https://github.com/Mr-Fishy",
-    },
-    {
-      id: "agile-sprint-lens",
-      title: "SprintLens Flow Tracker",
-      tagline: "Kanban and velocity analytics tool for engineering managers",
-      description:
-        "An engineering management tool visualizing team cycle times, work-in-progress bottlenecks, and sprint burndown trends using statistical process control charts.",
-      category: "Full-Stack",
-      featured: false,
-      tags: ["TypeScript", "Next.js", "PostgreSQL", "shadcn/ui", "Recharts"],
-      metrics: "Adopted by 4 engineering teams for sprint retrospectives",
-      githubUrl: "https://github.com/Mr-Fishy",
-      liveUrl: "https://github.com/Mr-Fishy",
-    },
-    {
-      id: "async-pubsub-core",
-      title: "HyperBus Pub/Sub",
-      tagline: "Lightweight in-memory publish-subscribe library with backpressure",
-      description:
-        "An open-source concurrent message bus implementing reactive backpressure and priority channels for event-driven architectures.",
-      category: "Open Source",
-      featured: false,
-      tags: ["Go", "Concurrency", "Open Source", "Channels"],
-      metrics: "Zero allocation hot-path with 10M msg/s throughput",
-      githubUrl: "https://github.com/Mr-Fishy",
+      tags: ["C++", "Systems Architecture", "Game Engine", "OpenGL"],
+      githubUrl: "https://github.com/Lefihm/Ocean",
     },
   ],
 };
-

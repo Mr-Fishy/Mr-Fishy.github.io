@@ -50,18 +50,34 @@ pnpm check
 ```
 
 
-## Deploy with Nitro
+## Deploy to Cloudflare Workers (`evanjfish.app`)
 
-This project uses Nitro as a generic server adapter, so it can run on any Node-compatible host.
+This project is configured for server-side rendering (SSR) on **Cloudflare Workers** using `@cloudflare/vite-plugin` and **Wrangler**.
+
+It is configured in `wrangler.jsonc` to deploy directly to the custom domain **`evanjfish.app`**.
+
+### Local Preview
+
+To preview the production build locally with Wrangler:
 
 ```bash
-npm run build
-node dist/server/index.mjs
+pnpm build
+pnpm preview
 ```
 
-The build output is a self-contained Node server. To deploy, push the `dist/` directory to your host (Render, Fly.io, your own VPS, etc.) and run the server command above.
+### Deploying
 
-For host-specific presets (Vercel, Netlify, Cloudflare, AWS Lambda, etc.) and tuning, see https://v3.nitro.build/deploy.
+To deploy to Cloudflare Workers:
+
+```bash
+pnpm deploy
+```
+
+Make sure you are logged in to Cloudflare with Wrangler:
+
+```bash
+pnpm exec wrangler login
+```
 
 
 ## Shadcn

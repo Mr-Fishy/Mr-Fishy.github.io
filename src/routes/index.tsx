@@ -41,7 +41,7 @@ function Home() {
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground">
               Hi, I'm{" "}
-              <span className="bg-gradient-to-r from-teal-600 to-emerald-600 bg-clip-text text-transparent dark:from-teal-400 dark:to-emerald-400">
+              <span className="bg-linear-to-r from-teal-600 to-emerald-600 bg-clip-text text-transparent dark:from-teal-400 dark:to-emerald-400">
                 {portfolioData.name}
               </span>
             </h1>
@@ -79,7 +79,7 @@ function Home() {
           </div>
 
           <div className="flex justify-center">
-            <div className="relative p-2 rounded-full bg-gradient-to-tr from-teal-500/20 via-emerald-500/20 to-transparent border border-border shadow-xl">
+            <div className="relative p-2 rounded-full bg-linear-to-tr from-teal-500/20 via-emerald-500/20 to-transparent border border-border shadow-xl">
               <Avatar className="w-36 h-36 sm:w-48 sm:h-48 rounded-full border-4 border-background">
                 <AvatarImage src="/logo512.png" alt={portfolioData.name} />
                 <AvatarFallback className="text-3xl font-bold">
@@ -106,22 +106,23 @@ function Home() {
             <Card className="transition-all hover:shadow-md hover:-translate-y-1 duration-200">
               <CardHeader className="space-y-2">
                 <div className="w-10 h-10 rounded-lg bg-teal-500/10 text-teal-600 dark:text-teal-400 flex items-center justify-center">
-                  <Code className="w-5 h-5" />
+                  <Layers className="w-5 h-5" />
                 </div>
                 <CardTitle className="text-xl">
-                  Full-Stack Development
+                  IT & Enterprise Systems
                 </CardTitle>
                 <CardDescription>
-                  Crafting accessible, reactive web applications with
-                  TypeScript, React, and modern full-stack frameworks.
+                  Directing multi-location process development and automated
+                  software workflows across Salesforce, QuickBooks, and
+                  SharePoint.
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-1.5">
-                  <Badge variant="secondary">React</Badge>
-                  <Badge variant="secondary">TypeScript</Badge>
-                  <Badge variant="secondary">TanStack</Badge>
-                  <Badge variant="secondary">Tailwind</Badge>
+                  <Badge variant="secondary">Salesforce</Badge>
+                  <Badge variant="secondary">SharePoint</Badge>
+                  <Badge variant="secondary">QuickBooks</Badge>
+                  <Badge variant="secondary">Cybersecurity Policy</Badge>
                 </div>
               </CardContent>
             </Card>
@@ -131,18 +132,18 @@ function Home() {
                 <div className="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
                   <Cpu className="w-5 h-5" />
                 </div>
-                <CardTitle className="text-xl">System Design</CardTitle>
+                <CardTitle className="text-xl">Systems & Telemetry</CardTitle>
                 <CardDescription>
-                  Architecting resilient distributed microservices, messaging
-                  pipelines, and scalable database schemas.
+                  Engineering embedded vehicle telemetry, sensor interfaces, and
+                  algorithmic problem solving with low-level control.
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-1.5">
-                  <Badge variant="secondary">Go</Badge>
-                  <Badge variant="secondary">Node.js</Badge>
-                  <Badge variant="secondary">PostgreSQL</Badge>
-                  <Badge variant="secondary">Redis</Badge>
+                  <Badge variant="secondary">C++</Badge>
+                  <Badge variant="secondary">Python</Badge>
+                  <Badge variant="secondary">Rust</Badge>
+                  <Badge variant="secondary">Embedded Sensors</Badge>
                 </div>
               </CardContent>
             </Card>
@@ -150,20 +151,20 @@ function Home() {
             <Card className="transition-all hover:shadow-md hover:-translate-y-1 duration-200">
               <CardHeader className="space-y-2">
                 <div className="w-10 h-10 rounded-lg bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center">
-                  <Layers className="w-5 h-5" />
+                  <Code className="w-5 h-5" />
                 </div>
-                <CardTitle className="text-xl">Project Management</CardTitle>
+                <CardTitle className="text-xl">Software & Web Apps</CardTitle>
                 <CardDescription>
-                  Directing engineering delivery, aligning technical debt with
-                  business velocity, and coaching agile teams.
+                  Building reactive edge web applications, automation scripts,
+                  and mentoring computer science students.
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-1.5">
-                  <Badge variant="secondary">Agile & Scrum</Badge>
-                  <Badge variant="secondary">Roadmapping</Badge>
-                  <Badge variant="secondary">Mentorship</Badge>
-                  <Badge variant="secondary">CI/CD</Badge>
+                  <Badge variant="secondary">TypeScript</Badge>
+                  <Badge variant="secondary">React 19</Badge>
+                  <Badge variant="secondary">Cloudflare Workers</Badge>
+                  <Badge variant="secondary">Visual Basic</Badge>
                 </div>
               </CardContent>
             </Card>
@@ -224,7 +225,7 @@ function Home() {
                 </CardContent>
                 <CardFooter className="pt-2 border-t flex justify-between items-center text-xs">
                   {project.metrics && (
-                    <span className="text-muted-foreground font-medium truncate max-w-[180px]">
+                    <span className="text-muted-foreground font-medium truncate max-w-45">
                       {project.metrics}
                     </span>
                   )}
@@ -245,7 +246,7 @@ function Home() {
         </section>
 
         {/* Quick Contact Banner */}
-        <section className="rounded-2xl border border-border bg-gradient-to-r from-card via-muted/40 to-card p-8 text-center space-y-4 shadow-sm">
+        <section className="rounded-2xl border border-border bg-linear-to-r from-card via-muted/40 to-card p-8 text-center space-y-4 shadow-sm">
           <h3 className="text-2xl font-bold tracking-tight">
             Let's build something extraordinary
           </h3>

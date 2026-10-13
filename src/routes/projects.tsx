@@ -19,7 +19,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { portfolioData, type Project } from "@/data/portfolio-data";
+import { type Project, portfolioData } from "@/data/portfolio-data";
 import PrimaryLayout from "@/layouts/primary-layout";
 
 export const Route = createFileRoute("/projects")({ component: ProjectsPage });

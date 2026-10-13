@@ -15,13 +15,22 @@ export const Route = createRootRoute({
         content: "width=device-width, initial-scale=1",
       },
       {
-        title: "TanStack Start Starter",
+        title: "Evan Fish | Director of IT & Software • System Designer",
+      },
+      {
+        name: "description",
+        content:
+          "Evan Fish - Director of IT & Software, System Designer, and Computer Science Researcher. Deployed on evanjfish.app.",
       },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
+      },
+      {
+        rel: "icon",
+        href: "/favicon.ico",
       },
     ],
   }),
