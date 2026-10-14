@@ -14,6 +14,8 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as CourseworkRouteImport } from './routes/coursework'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as ResumeRouteImport } from './routes/resume'
+import { Route as InteractiveIndexRouteImport } from './routes/interactive/index'
+import { Route as InteractiveFrMathRouteImport } from './routes/interactive/fr-math'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -40,6 +42,16 @@ const ResumeRoute = ResumeRouteImport.update({
   path: '/resume',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InteractiveIndexRoute = InteractiveIndexRouteImport.update({
+  id: '/interactive/',
+  path: '/interactive/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InteractiveFrMathRoute = InteractiveFrMathRouteImport.update({
+  id: '/interactive/fr-math',
+  path: '/interactive/fr-math',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -47,6 +59,8 @@ export interface FileRoutesByFullPath {
   '/coursework': typeof CourseworkRoute
   '/projects': typeof ProjectsRoute
   '/resume': typeof ResumeRoute
+  '/interactive/fr-math': typeof InteractiveFrMathRoute
+  '/interactive/': typeof InteractiveIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +68,8 @@ export interface FileRoutesByTo {
   '/coursework': typeof CourseworkRoute
   '/projects': typeof ProjectsRoute
   '/resume': typeof ResumeRoute
+  '/interactive/fr-math': typeof InteractiveFrMathRoute
+  '/interactive': typeof InteractiveIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,13 +78,37 @@ export interface FileRoutesById {
   '/coursework': typeof CourseworkRoute
   '/projects': typeof ProjectsRoute
   '/resume': typeof ResumeRoute
+  '/interactive/fr-math': typeof InteractiveFrMathRoute
+  '/interactive/': typeof InteractiveIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/coursework' | '/projects' | '/resume'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/coursework'
+    | '/projects'
+    | '/resume'
+    | '/interactive/fr-math'
+    | '/interactive/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/coursework' | '/projects' | '/resume'
-  id: '__root__' | '/' | '/about' | '/coursework' | '/projects' | '/resume'
+  to:
+    | '/'
+    | '/about'
+    | '/coursework'
+    | '/projects'
+    | '/resume'
+    | '/interactive/fr-math'
+    | '/interactive'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/coursework'
+    | '/projects'
+    | '/resume'
+    | '/interactive/fr-math'
+    | '/interactive/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -77,6 +117,8 @@ export interface RootRouteChildren {
   CourseworkRoute: typeof CourseworkRoute
   ProjectsRoute: typeof ProjectsRoute
   ResumeRoute: typeof ResumeRoute
+  InteractiveFrMathRoute: typeof InteractiveFrMathRoute
+  InteractiveIndexRoute: typeof InteractiveIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -116,6 +158,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResumeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/interactive/': {
+      id: '/interactive/'
+      path: '/interactive'
+      fullPath: '/interactive/'
+      preLoaderRoute: typeof InteractiveIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/interactive/fr-math': {
+      id: '/interactive/fr-math'
+      path: '/interactive/fr-math'
+      fullPath: '/interactive/fr-math'
+      preLoaderRoute: typeof InteractiveFrMathRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -125,6 +181,8 @@ const rootRouteChildren: RootRouteChildren = {
   CourseworkRoute: CourseworkRoute,
   ProjectsRoute: ProjectsRoute,
   ResumeRoute: ResumeRoute,
+  InteractiveFrMathRoute: InteractiveFrMathRoute,
+  InteractiveIndexRoute: InteractiveIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

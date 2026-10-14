@@ -1,5 +1,3 @@
-Welcome to your new TanStack Start app! 
-
 # Getting Started
 
 To run this application:
@@ -9,7 +7,7 @@ pnpm install
 pnpm dev
 ```
 
-# Building For Production
+## Building For Production
 
 To build this application for production:
 
@@ -42,13 +40,11 @@ If you prefer not to use Tailwind CSS:
 
 This project uses [Biome](https://biomejs.dev/) for linting and formatting. The following scripts are available:
 
-
 ```bash
 pnpm lint
 pnpm format
 pnpm check
 ```
-
 
 ## Deploy to Cloudflare Workers (`evanjfish.app`)
 
@@ -79,7 +75,6 @@ Make sure you are logged in to Cloudflare with Wrangler:
 pnpm exec wrangler login
 ```
 
-
 ## Shadcn
 
 Add components using the latest version of [Shadcn](https://ui.shadcn.com/).
@@ -87,8 +82,6 @@ Add components using the latest version of [Shadcn](https://ui.shadcn.com/).
 ```bash
 pnpm dlx shadcn@latest add button
 ```
-
-
 
 ## Routing
 
@@ -232,11 +225,11 @@ function PeopleComponent() {
 
 Loaders simplify your data fetching logic dramatically. Check out more information in the [Loader documentation](https://tanstack.com/router/latest/docs/framework/react/guide/data-loading#loader-parameters).
 
-# Demo files
+## Demo files
 
 Files prefixed with `demo` can be safely deleted. They are there to provide a starting point for you to play around with the features you've installed.
 
-# Learn More
+## Learn More
 
 You can learn more about all of the offerings from TanStack in the [TanStack documentation](https://tanstack.com).
 

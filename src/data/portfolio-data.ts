@@ -302,6 +302,26 @@ export const portfolioData: PortfolioData = {
       githubUrl: "https://github.com/uniqueident/Baja-2025",
     },
     {
+      id: "fr-math",
+      title: "Falcon Racing Drivetrain Tool (fr-math)",
+      tagline:
+        "High-precision race drivetrain analysis suite with interactive Canvas visualizers.",
+      description:
+        "Complete interactive mechanical engineering subsite evaluating AGMA 2001-D04 gear ratings with involute mesh rendering, two-support beam solver with synchronized 4-panel scrubber diagrams, ISO 281 rolling bearing life curves, 4-bar crank-rocker kinematics, and multi-stage ratio optimization.",
+      category: "Tools",
+      featured: true,
+      tags: [
+        "TypeScript",
+        "React 19",
+        "HTML5 Canvas",
+        "AGMA 2001-D04",
+        "ISO 281",
+        "Kinematics",
+      ],
+      metrics: "Live interactive subsite tool",
+      liveUrl: "/interactive/fr-math",
+    },
+    {
       id: "portfolio-worker",
       title: "evanjfish.app Edge Portfolio",
       tagline:

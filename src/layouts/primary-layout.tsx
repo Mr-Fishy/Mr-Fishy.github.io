@@ -93,6 +93,18 @@ export default function PrimaryLayout({ children }: PrimaryLayoutProps) {
               Projects
             </Link>
             <Link
+              to="/interactive"
+              activeProps={{
+                className: "text-foreground font-semibold bg-muted",
+              }}
+              inactiveProps={{
+                className: "text-muted-foreground hover:text-foreground",
+              }}
+              className="px-3 py-1.5 rounded-md transition-colors"
+            >
+              Interactive
+            </Link>
+            <Link
               to="/coursework"
               activeProps={{
                 className: "text-foreground font-semibold bg-muted",
@@ -121,7 +133,7 @@ export default function PrimaryLayout({ children }: PrimaryLayoutProps) {
       </header>
 
       {/* Main Content Area */}
-      <main className="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8 pb-24">
+      <main className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8 pb-24">
         {children}
       </main>
 
