@@ -16,6 +16,7 @@ import {
   OVERLOAD,
 } from "../gear";
 import type {
+  CustomGearMaterial,
   GearMeshInput,
   GearMeshResult,
   MaterialKey,
@@ -25,6 +26,7 @@ import type {
 import { fmt, Units } from "../unit";
 import { safetyVerdict } from "../viz/draw";
 import { renderGearMesh } from "../viz/gear-viz";
+import { GearMathDoc } from "./MathDocs";
 
 interface GearTabProps {
   isImperial: boolean;
@@ -55,6 +57,14 @@ export function GearTab({
   const [jOverride, setJOverride] = useState<number | null>(null);
 
   const [material, setMaterial] = useState<MaterialKey>("carburized");
+  const [customMaterial, setCustomMaterial] = useState<CustomGearMaterial>({
+    label: "Custom Alloy",
+    hardness_HB: 500,
+    St: 400,
+    Sc: 1300,
+    E: 207000,
+    v: 0.292,
+  });
   const [grade, setGrade] = useState<1 | 2>(1);
   const [hardness, setHardness] = useState(600);
   const [reliability, setReliability] = useState(0.99);
@@ -80,6 +90,10 @@ export function GearTab({
   // Adjust default hardness when material changes
   const handleMaterialChange = (newMat: MaterialKey) => {
     setMaterial(newMat);
+    if (newMat === "custom") {
+      setHardness(customMaterial.hardness_HB);
+      return;
+    }
     const m = MATERIALS[newMat];
     if (m) {
       setHardness(Math.round((m.hardnessRange[0] + m.hardnessRange[1]) / 2));
@@ -105,6 +119,7 @@ export function GearTab({
     mounting,
     crowned,
     material,
+    customMaterial: material === "custom" ? customMaterial : undefined,
     grade,
     hardness_HB: hardness,
     reliability,
@@ -565,6 +580,107 @@ export function GearTab({
                 className="w-24 px-2 py-1 rounded border border-border bg-background text-right"
               />
             </div>
+
+            {material === "custom" && (
+              <div className="pt-2 border-t border-border/60 space-y-2.5">
+                <div className="font-semibold text-primary text-[11px] uppercase tracking-wider">
+                  Custom Material Parameters
+                </div>
+                <div className="flex items-center justify-between gap-2">
+                  <label className="text-muted-foreground">Name</label>
+                  <input
+                    type="text"
+                    value={customMaterial.label}
+                    onChange={(e) =>
+                      setCustomMaterial((prev) => ({
+                        ...prev,
+                        label: e.target.value,
+                      }))
+                    }
+                    className="w-36 px-2 py-1 rounded border border-border bg-background text-right"
+                  />
+                </div>
+                <div className="flex items-center justify-between gap-2">
+                  <label className="text-muted-foreground">
+                    Allowable Bending St ({labels.stress})
+                  </label>
+                  <input
+                    type="number"
+                    value={
+                      isImperial
+                        ? Math.round(customMaterial.St * 145.038)
+                        : customMaterial.St
+                    }
+                    onChange={(e) => {
+                      const v = parseFloat(e.target.value) || 0;
+                      setCustomMaterial((prev) => ({
+                        ...prev,
+                        St: isImperial ? v / 145.038 : v,
+                      }));
+                    }}
+                    className="w-24 px-2 py-1 rounded border border-border bg-background text-right"
+                  />
+                </div>
+                <div className="flex items-center justify-between gap-2">
+                  <label className="text-muted-foreground">
+                    Allowable Contact Sc ({labels.stress})
+                  </label>
+                  <input
+                    type="number"
+                    value={
+                      isImperial
+                        ? Math.round(customMaterial.Sc * 145.038)
+                        : customMaterial.Sc
+                    }
+                    onChange={(e) => {
+                      const v = parseFloat(e.target.value) || 0;
+                      setCustomMaterial((prev) => ({
+                        ...prev,
+                        Sc: isImperial ? v / 145.038 : v,
+                      }));
+                    }}
+                    className="w-24 px-2 py-1 rounded border border-border bg-background text-right"
+                  />
+                </div>
+                <div className="flex items-center justify-between gap-2">
+                  <label className="text-muted-foreground">
+                    Modulus E ({isImperial ? "Mpsi" : "GPa"})
+                  </label>
+                  <input
+                    type="number"
+                    step="0.5"
+                    value={
+                      isImperial
+                        ? (customMaterial.E / 6894.757).toFixed(1)
+                        : (customMaterial.E / 1000).toFixed(0)
+                    }
+                    onChange={(e) => {
+                      const v = parseFloat(e.target.value) || 0;
+                      setCustomMaterial((prev) => ({
+                        ...prev,
+                        E: isImperial ? v * 6894.757 : v * 1000,
+                      }));
+                    }}
+                    className="w-24 px-2 py-1 rounded border border-border bg-background text-right"
+                  />
+                </div>
+                <div className="flex items-center justify-between gap-2">
+                  <label className="text-muted-foreground">Poisson's ν</label>
+                  <input
+                    type="number"
+                    step="0.01"
+                    value={customMaterial.v}
+                    onChange={(e) =>
+                      setCustomMaterial((prev) => ({
+                        ...prev,
+                        v: parseFloat(e.target.value) || 0.3,
+                      }))
+                    }
+                    className="w-24 px-2 py-1 rounded border border-border bg-background text-right"
+                  />
+                </div>
+              </div>
+            )}
           </CardContent>
         </Card>
       </div>
@@ -721,6 +837,9 @@ export function GearTab({
           </CardContent>
         </Card>
       )}
+
+      {/* Mathematical Theory & Governing Equations */}
+      <GearMathDoc />
     </div>
   );
 }

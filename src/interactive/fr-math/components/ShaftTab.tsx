@@ -16,6 +16,7 @@ import {
   sampleAt,
 } from "../shaft";
 import type {
+  CustomShaftMaterial,
   GearMeshResult,
   ShaftInput,
   ShaftLoad,
@@ -27,6 +28,7 @@ import type {
 import { fmt, Units } from "../unit";
 import { safetyVerdict } from "../viz/draw";
 import { renderShaft, xFromPointer } from "../viz/shaft-viz";
+import { ShaftMathDoc } from "./MathDocs";
 
 interface ShaftTabProps {
   isImperial: boolean;
@@ -45,6 +47,13 @@ export function ShaftTab({
   const [supportA, setSupportA] = useState(20);
   const [supportB, setSupportB] = useState(200);
   const [material, setMaterial] = useState<ShaftMaterialKey>("4140");
+  const [customMaterial, setCustomMaterial] = useState<CustomShaftMaterial>({
+    label: "Custom Steel / Alloy",
+    Sut: 1100,
+    Sy: 950,
+    E: 207000,
+    seRatio: 0.5,
+  });
   const [finish, setFinish] = useState<SurfaceFinishKey>("machined");
   const [kf, setKf] = useState(1.6);
   const [kfs, setKfs] = useState(1.4);
@@ -88,6 +97,7 @@ export function ShaftTab({
     ],
     segments,
     material,
+    customMaterial: material === "custom" ? customMaterial : undefined,
     surfaceFinish: finish,
     Kf: kf,
     Kfs: kfs,
@@ -415,6 +425,116 @@ export function ShaftTab({
               </div>
             </div>
 
+            {material === "custom" && (
+              <div className="p-3 rounded border border-border bg-muted/20 space-y-2.5">
+                <div className="font-semibold text-primary text-[11px] uppercase tracking-wider">
+                  Custom Material Properties
+                </div>
+                <div className="grid grid-cols-2 gap-2 text-xs">
+                  <div>
+                    <label className="text-muted-foreground block mb-1">
+                      Material Name
+                    </label>
+                    <input
+                      type="text"
+                      value={customMaterial.label}
+                      onChange={(e) =>
+                        setCustomMaterial((prev) => ({
+                          ...prev,
+                          label: e.target.value,
+                        }))
+                      }
+                      className="w-full px-2 py-1 rounded border border-border bg-background text-foreground"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-muted-foreground block mb-1">
+                      Modulus E ({isImperial ? "Mpsi" : "GPa"})
+                    </label>
+                    <input
+                      type="number"
+                      step="0.5"
+                      value={
+                        isImperial
+                          ? (customMaterial.E / 6894.757).toFixed(1)
+                          : (customMaterial.E / 1000).toFixed(0)
+                      }
+                      onChange={(e) => {
+                        const v = parseFloat(e.target.value) || 0;
+                        setCustomMaterial((prev) => ({
+                          ...prev,
+                          E: isImperial ? v * 6894.757 : v * 1000,
+                        }));
+                      }}
+                      className="w-full px-2 py-1 rounded border border-border bg-background text-foreground"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-muted-foreground block mb-1">
+                      Tensile Sut ({disp.S})
+                    </label>
+                    <input
+                      type="number"
+                      value={
+                        isImperial
+                          ? Math.round(customMaterial.Sut * 145.038)
+                          : customMaterial.Sut
+                      }
+                      onChange={(e) => {
+                        const v = parseFloat(e.target.value) || 0;
+                        setCustomMaterial((prev) => ({
+                          ...prev,
+                          Sut: isImperial ? v / 145.038 : v,
+                        }));
+                      }}
+                      className="w-full px-2 py-1 rounded border border-border bg-background text-foreground"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-muted-foreground block mb-1">
+                      Yield Sy ({disp.S})
+                    </label>
+                    <input
+                      type="number"
+                      value={
+                        isImperial
+                          ? Math.round(customMaterial.Sy * 145.038)
+                          : customMaterial.Sy
+                      }
+                      onChange={(e) => {
+                        const v = parseFloat(e.target.value) || 0;
+                        setCustomMaterial((prev) => ({
+                          ...prev,
+                          Sy: isImperial ? v / 145.038 : v,
+                        }));
+                      }}
+                      className="w-full px-2 py-1 rounded border border-border bg-background text-foreground"
+                    />
+                  </div>
+                  <div className="col-span-2">
+                    <label className="text-muted-foreground block mb-1">
+                      Endurance Limit Ratio Se' / Sut (0.50 steel, 0.35 Al, 0.45 Ti)
+                    </label>
+                    <input
+                      type="number"
+                      step="0.05"
+                      min="0.1"
+                      max="0.8"
+                      value={customMaterial.seRatio ?? 0.5}
+                      onChange={(e) => {
+                        const v = parseFloat(e.target.value) || 0.5;
+                        setCustomMaterial((prev) => ({
+                          ...prev,
+                          seRatio: v,
+                        }));
+                      }}
+                      className="w-full px-2 py-1 rounded border border-border bg-background text-foreground"
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
+
             <div className="grid grid-cols-3 gap-3">
               <div>
                 <label className="text-muted-foreground block mb-1">
@@ -565,6 +685,9 @@ export function ShaftTab({
           </CardContent>
         </Card>
       </div>
+
+      {/* Mathematical Theory & Governing Equations */}
+      <ShaftMathDoc />
     </div>
   );
 }

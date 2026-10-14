@@ -66,25 +66,65 @@ export const MATERIALS: Record<
     hardnessRange: [number, number];
     St: (HB: number, grade: 1 | 2) => number;
     Sc: (HB: number, grade: 1 | 2) => number;
+    E: number;
+    v: number;
   }
 > = {
   throughHardened: {
-    label: "Through-hardened steel",
+    label: "Through-hardened steel (4140, 4340)",
     hardnessRange: [180, 400],
     St: (HB, grade) => (grade === 2 ? 0.703 * HB + 113 : 0.533 * HB + 88.3),
     Sc: (HB, grade) => (grade === 2 ? 2.41 * HB + 237 : 2.22 * HB + 200),
+    E: 207000,
+    v: 0.292,
   },
   carburized: {
     label: "Carburized & hardened (8620, 9310)",
     hardnessRange: [550, 650],
     St: (_HB, grade) => (grade === 2 ? 450 : 380),
     Sc: (_HB, grade) => (grade === 2 ? 1550 : 1240),
+    E: 207000,
+    v: 0.292,
   },
   nitrided: {
     label: "Nitrided through-hardened (4140, 4340)",
     hardnessRange: [200, 400],
     St: (HB, grade) => (grade === 2 ? 0.7255 * HB + 63.89 : 0.568 * HB + 83.8),
     Sc: (HB, grade) => (grade === 2 ? 1.005 * HB + 850 : 1.005 * HB + 750),
+    E: 207000,
+    v: 0.292,
+  },
+  maraging: {
+    label: "Maraging 300 steel (aerospace)",
+    hardnessRange: [500, 600],
+    St: (_HB, grade) => (grade === 2 ? 520 : 440),
+    Sc: (_HB, grade) => (grade === 2 ? 1650 : 1400),
+    E: 200000,
+    v: 0.3,
+  },
+  al7075: {
+    label: "7075-T6 hard-anodized aluminium",
+    hardnessRange: [130, 160],
+    St: (_HB, _grade) => 210,
+    Sc: (_HB, _grade) => 580,
+    E: 71700,
+    v: 0.33,
+  },
+  bronze: {
+    label: "C95400 aluminium bronze",
+    hardnessRange: [150, 200],
+    St: (_HB, _grade) => 250,
+    Sc: (_HB, _grade) => 700,
+    E: 110000,
+    v: 0.32,
+  },
+  custom: {
+    label: "Custom material",
+    hardnessRange: [50, 750],
+    St: (_HB, _grade) => 350,
+    Sc: (_HB, _grade) => 1200,
+    E: 207000,
+    v: 0.292,
   },
 };
 
@@ -356,10 +396,23 @@ export function analyzeMesh(input: GearMeshInput): GearMeshResult {
   const KB = AGMA.KB(rimThickness_mm, wholeDepth);
   const factors = { Ko, Kv, Ks, Km, KB };
 
+  const customMat = input.customMaterial;
+  const isCustom = material === "custom" && customMat != null;
+  const mat = isCustom
+    ? {
+        label: customMat.label,
+        hardnessRange: [50, 750] as [number, number],
+        St: () => customMat.St,
+        Sc: () => customMat.Sc,
+        E: customMat.E,
+        v: customMat.v,
+      }
+    : MATERIALS[material] || MATERIALS.carburized;
+
   const J_p = J_override ?? AGMA.J(pinionTeeth, gearTeeth);
   const J_g = J_override ?? AGMA.J(gearTeeth, pinionTeeth);
   const I = AGMA.I(pressureAngle_deg, mG);
-  const ZE = AGMA.ZE();
+  const ZE = AGMA.ZE(mat.E, mat.v, mat.E, mat.v);
 
   // --- Stresses ---
   const sigma_b_p = AGMAGear.getBendingStress(
@@ -386,9 +439,8 @@ export function analyzeMesh(input: GearMeshInput): GearMeshResult {
   );
 
   // --- Allowables ---
-  const mat = MATERIALS[material] || MATERIALS.carburized;
-  const St = mat.St(hardness_HB, grade);
-  const Sc = mat.Sc(hardness_HB, grade);
+  const St = isCustom ? customMat.St : mat.St(hardness_HB, grade);
+  const Sc = isCustom ? customMat.Sc : mat.Sc(hardness_HB, grade);
 
   const cycles_p = 60 * designLife_h * pinionRPM;
   const cycles_g = cycles_p / mG;

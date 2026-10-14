@@ -88,7 +88,7 @@ export const portfolioData: PortfolioData = {
   titles: [
     "Director of IT & Software",
     "System Designer",
-    "Computer Science Researcher",
+    "Developer",
   ],
   tagline:
     "Designing resilient software architectures, streamlining enterprise workflows, and building high-performance systems from embedded devices to the edge.",
@@ -323,7 +323,7 @@ export const portfolioData: PortfolioData = {
     },
     {
       id: "portfolio-worker",
-      title: "evanjfish.app Edge Portfolio",
+      title: "evanjfish.app Portfolio",
       tagline:
         "Server-rendered edge application deployed on Cloudflare Workers.",
       description:
@@ -367,8 +367,7 @@ export const portfolioData: PortfolioData = {
         "Collaborative systems programming project exploring core game engine architecture concepts, graphics rendering pipelines, entity-component systems, and low-level resource management.",
       category: "Systems",
       featured: false,
-      tags: ["C++", "Systems Architecture", "Game Engine", "OpenGL"],
-      githubUrl: "https://github.com/Lefihm/Ocean",
+      tags: ["C++", "Systems Architecture", "Game Engine", "OpenGL"]
     },
   ],
   coursework: [
@@ -433,32 +432,42 @@ export const portfolioData: PortfolioData = {
       ],
     },
     {
-      id: "interactive-art-study",
-      title: "Interactive Generative Visuals & Creative Computing",
-      courseCode: "ART 3210",
-      courseName: "Interactive Computing and Art",
-      quarter: "Spring 2026",
+      id: "time-line-motion",
+      title: "Expressive Line in Motion",
+      courseCode: "ART 1107",
+      courseName: "Time",
+      quarter: "Fall 2026",
       tagline:
-        "Exploration of generative algorithmic aesthetics, real-time shaders, and sensory interaction.",
+        "Expressing the psychological arc of Catharsis through hand-drawn line weight and digital animation.",
       description:
-        "Creative computing installation exploring responsive computational art, particle systems, and real-time interaction designed as part of the Interactive Computing and Art minor.",
+        "Sequential hand-drawn animation project translated and refined in Adobe Photoshop into black & white and chromatic looped GIFs, exploring how line velocity, weight, and texture evoke the release and liberation of Catharsis.",
       longDescription: [
-        "Constructed real-time responsive visual systems exploring natural patterns, fluid dynamics, and generative geometry.",
-        "Integrated interactive inputs to allow audience engagement to influence color palette, velocity fields, and visual entropy.",
+        "Constructed sequential stages of refined hand drawings exploring emotional tension, continuity, and kinetic rhythm around the theme of Catharsis.",
+        "Digitized, aligned, and cleaned physical drawings in Adobe Photoshop to establish crisp frame registration.",
+        "Assembled and timed looping GIF sequences across both monochromatic and colorized textures.",
       ],
       category: "Interactive Art",
       featured: true,
-      tags: ["Creative Coding", "Interactive Art", "Shaders", "Generative Design"],
+      tags: ["Digital Animation", "Catharsis", "Photoshop", "Hand Drawing", "Sequential Art", "Visual Rhythm"],
       deliverables: [
         {
-          label: "Project Write-up & Code",
-          url: "https://github.com/Mr-Fishy",
-          type: "github",
+          label: "View Project & Animations",
+          url: "/coursework/time/expressive-line",
+          type: "demo",
+        },
+      ],
+      media: [
+        {
+          type: "gif",
+          url: "/Image-Sequence-Color.gif",
+          caption: "Colorized & Textured Expressive Line Animation",
+          alt: "Color animation sequence",
         },
       ],
       keyOutcomes: [
-        "Real-time interactive generative visual piece",
-        "Exhibited in university creative computing portfolio",
+        "12–30 stage refined sequential hand drawings",
+        "High-contrast monochromatic base GIF and atmospheric colorized GIF",
+        "Understanding of line weight, motion pacing, and emotional resonance",
       ],
     },
   ],

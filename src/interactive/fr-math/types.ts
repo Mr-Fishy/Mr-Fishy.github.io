@@ -20,7 +20,23 @@ export type MountingKey =
   | "commercial"
   | "precision"
   | "extraPrecision";
-export type MaterialKey = "throughHardened" | "carburized" | "nitrided";
+export type MaterialKey =
+  | "throughHardened"
+  | "carburized"
+  | "nitrided"
+  | "maraging"
+  | "al7075"
+  | "bronze"
+  | "custom";
+
+export interface CustomGearMaterial {
+  label: string;
+  hardness_HB: number;
+  St: number; // Allowable bending stress, MPa
+  Sc: number; // Allowable contact stress, MPa
+  E: number; // Young's modulus, MPa
+  v: number; // Poisson's ratio
+}
 
 export interface GearMeshInput {
   power_kW: number;
@@ -35,6 +51,7 @@ export interface GearMeshInput {
   mounting: MountingKey;
   crowned: boolean;
   material: MaterialKey;
+  customMaterial?: CustomGearMaterial;
   grade: 1 | 2;
   hardness_HB: number;
   reliability: number;
@@ -136,10 +153,24 @@ export interface ShaftTorque {
 export type ShaftMaterialKey =
   | "4140"
   | "4340"
+  | "300M"
   | "1045"
   | "8620"
+  | "174PH"
   | "7075"
-  | "Ti64";
+  | "6061"
+  | "Ti64"
+  | "52100"
+  | "custom";
+
+export interface CustomShaftMaterial {
+  label: string;
+  Sut: number; // Ultimate tensile strength, MPa
+  Sy: number; // Yield strength, MPa
+  E: number; // Young's modulus, MPa
+  seRatio?: number; // Endurance limit ratio Se' / Sut (0.5 for steel, 0.35 for Al)
+}
+
 export type SurfaceFinishKey = "ground" | "machined" | "hotRolled" | "forged";
 
 export interface ShaftInput {
@@ -150,6 +181,7 @@ export interface ShaftInput {
   loads: ShaftLoad[];
   torques: ShaftTorque[];
   material?: ShaftMaterialKey;
+  customMaterial?: CustomShaftMaterial;
   surfaceFinish?: SurfaceFinishKey;
   Kf?: number;
   Kfs?: number;
@@ -184,7 +216,7 @@ export interface ShaftResult {
     A: { v: number; h: number; resultant: number };
     B: { v: number; h: number; resultant: number };
   };
-  material: { label: string; Sut: number; Sy: number; E: number };
+  material: { label: string; Sut: number; Sy: number; E: number; seRatio?: number };
   peaks: {
     moment: PeakValue;
     vonMises: PeakValue;
@@ -200,11 +232,13 @@ export interface ShaftResult {
 export interface BearingCatalogItem {
   id: string;
   type: "ball" | "roller";
+  series?: string;
   d: number;
   D: number;
   B: number;
   C: number;
   C0: number;
+  isCustom?: boolean;
 }
 
 export interface BearingLifeResult {

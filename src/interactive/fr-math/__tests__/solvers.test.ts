@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { BEARING_CATALOG, bearingLife, requiredRating } from "../bearing";
+import { BEARING_CATALOG, bearingLife, rankCandidates, requiredRating } from "../bearing";
 import { CrankMath } from "../crank";
 import { AGMA, AGMAGear, analyzeMesh } from "../gear";
 import optimize from "../optimize";
@@ -436,5 +436,100 @@ describe("Gearbox Optimization", () => {
       expect(c.bending).toBe("1.50");
       expect(c.pitting).toBe("1.50");
     }
+  });
+
+  it("optimize allows odd and hunting tooth counts", () => {
+    const mockGearModule = {
+      getBaseRPM: () => 3000,
+      evaluate: () => ({ bending: 2.0, pitting: 2.0 }),
+    };
+    // Target ratio 1.739 (~ 40/23 or 39/23)
+    const configs = optimize(1.739, 1, 15, 45, mockGearModule);
+    expect(configs.length).toBeGreaterThan(0);
+    const hasOddTeeth = configs.some((c) =>
+      c.stages.some((s) => s.includes("17") || s.includes("19") || s.includes("23")),
+    );
+    expect(hasOddTeeth).toBe(true);
+  });
+});
+
+describe("Expanded Materials & Custom Inputs", () => {
+  it("Custom gear material calculates allowables and contact stress with custom properties", () => {
+    const customResult = analyzeMesh({
+      power_kW: 10,
+      pinionRPM: 3000,
+      module_mm: 2.5,
+      faceWidth_mm: 20,
+      pinionTeeth: 20,
+      gearTeeth: 52,
+      pressureAngle_deg: 20,
+      Qv: 9,
+      overload: "moderate",
+      mounting: "commercial",
+      crowned: false,
+      material: "custom",
+      customMaterial: {
+        label: "Aero Spec Alloy",
+        hardness_HB: 500,
+        St: 550,
+        Sc: 1600,
+        E: 215000,
+        v: 0.28,
+      },
+      grade: 1,
+      hardness_HB: 500,
+      reliability: 0.99,
+      tempC: 90,
+      designLife_h: 30,
+    });
+
+    expect(customResult.allowables.St).toBe(550);
+    expect(customResult.allowables.Sc).toBe(1600);
+    expect(customResult.safety.SF_p).toBeGreaterThan(1.0);
+  });
+
+  it("Custom shaft material applies custom Sut, Sy, and accurate seRatio", () => {
+    const shaftRes = analyzeShaft({
+      length_mm: 200,
+      baseDiameter_mm: 25,
+      supports: [0, 200],
+      loads: [{ x: 100, Fv: 1000, Fh: 0, label: "P" }],
+      torques: [],
+      material: "custom",
+      customMaterial: {
+        label: "Special Titanium",
+        Sut: 1050,
+        Sy: 950,
+        E: 110000,
+        seRatio: 0.45,
+      },
+      samples: 400,
+    });
+
+    expect(shaftRes.material.label).toBe("Special Titanium");
+    expect(shaftRes.material.Sut).toBe(1050);
+    expect(shaftRes.peaks.fatigue.value).toBeGreaterThan(0);
+  });
+
+  it("Custom bearing evaluates ISO 281 life and integrates into catalog ranking", () => {
+    const customB = {
+      id: "RACE-CERAMIC-25",
+      type: "ball" as const,
+      d: 25,
+      D: 52,
+      B: 15,
+      C: 22.0,
+      C0: 12.0,
+      isCustom: true,
+    };
+    const res = bearingLife(customB, 1500, 200, 3000);
+    expect(res.L10).toBeGreaterThan((14800 / 1500) ** 3);
+    expect(res.staticSafety).toBeGreaterThan(1.0);
+
+    const ranked = rankCandidates(25, 1500, 200, 3000, 0.9, [customB]);
+    expect(ranked.some((r) => r.bearing.id === "RACE-CERAMIC-25")).toBe(true);
+    // Custom bearing with higher C should rank near top
+    expect(ranked[0].bearing.id).toBe("NU305"); // Roller C=46.5
+    expect(ranked[1].bearing.id).toBe("30205"); // Roller C=32.5
   });
 });

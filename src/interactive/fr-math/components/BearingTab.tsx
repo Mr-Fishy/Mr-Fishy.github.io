@@ -4,14 +4,16 @@
  * Tab 3: ISO 281 rolling bearing life analysis & candidate comparison.
  */
 
-import { ArrowDownToLine } from "lucide-react";
+import { ArrowDownToLine, Plus } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { availableBores, lifeCurve, rankCandidates } from "../bearing";
-import type { ShaftResult } from "../types";
+import type { BearingCatalogItem, ShaftResult } from "../types";
 import { fmt, Units } from "../unit";
 import { renderBearingChart } from "../viz/bearing-viz";
+import { BearingMathDoc } from "./MathDocs";
 
 interface BearingTabProps {
   isImperial: boolean;
@@ -31,6 +33,21 @@ export function BearingTab({ isImperial, shaftResult }: BearingTabProps) {
     "constantLoad",
   );
 
+  // Custom bearings state
+  const [customBearings, setCustomBearings] = useState<BearingCatalogItem[]>([]);
+  const [showAddCustom, setShowAddCustom] = useState(false);
+  const [newBearing, setNewBearing] = useState<BearingCatalogItem>({
+    id: "CUSTOM-25",
+    series: "Custom Bearing",
+    type: "ball",
+    d: 25,
+    D: 52,
+    B: 15,
+    C: 18.5,
+    C0: 10.0,
+    isCustom: true,
+  });
+
   // Selection of bearing IDs to plot
   const [plottedIds, setPlottedIds] = useState<string[]>([]);
 
@@ -40,7 +57,14 @@ export function BearingTab({ isImperial, shaftResult }: BearingTabProps) {
   const FrMetric = Units.forceToMetric(radialLoad, isImperial);
   const FaMetric = Units.forceToMetric(axialLoad, isImperial);
 
-  const candidates = rankCandidates(bore, FrMetric, FaMetric, rpm, reliability);
+  const candidates = rankCandidates(
+    bore,
+    FrMetric,
+    FaMetric,
+    rpm,
+    reliability,
+    customBearings,
+  );
 
   // Default to first 3 candidates if none selected
   useEffect(() => {
@@ -48,6 +72,22 @@ export function BearingTab({ isImperial, shaftResult }: BearingTabProps) {
       setPlottedIds(candidates.slice(0, 3).map((c) => c.bearing.id));
     }
   }, [bore, candidates.length]);
+
+  const handleAddCustomBearing = () => {
+    if (!newBearing.id.trim()) return;
+    const item: BearingCatalogItem = {
+      ...newBearing,
+      id: newBearing.id.trim(),
+      isCustom: true,
+    };
+    setCustomBearings((prev) => [
+      ...prev.filter((b) => b.id !== item.id),
+      item,
+    ]);
+    setBore(item.d);
+    setPlottedIds((prev) => Array.from(new Set([...prev, item.id])));
+    setShowAddCustom(false);
+  };
 
   // Compute life curves for plotted candidates
   const curves = candidates
@@ -159,7 +199,7 @@ export function BearingTab({ isImperial, shaftResult }: BearingTabProps) {
                 }}
                 className="w-28 px-2 py-1 rounded border border-border bg-background text-right text-xs text-foreground"
               >
-                {availableBores().map((b) => (
+                {availableBores(customBearings).map((b) => (
                   <option key={b} value={b}>
                     {b} mm
                   </option>
@@ -236,12 +276,164 @@ export function BearingTab({ isImperial, shaftResult }: BearingTabProps) {
 
         {/* Candidate Ranking Table */}
         <Card className="lg:col-span-2">
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-semibold">
-              Candidate Bearings ({bore} mm bore)
-            </CardTitle>
+          <CardHeader className="pb-3 flex flex-row items-center justify-between">
+            <div>
+              <CardTitle className="text-sm font-semibold">
+                Candidate Bearings ({bore} mm bore)
+              </CardTitle>
+              <p className="text-[11px] text-muted-foreground mt-0.5">
+                Standard ISO catalog + user custom bearings for {bore} mm shaft bore
+              </p>
+            </div>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setShowAddCustom(!showAddCustom)}
+              className="gap-1.5 text-xs h-7"
+            >
+              <Plus className="w-3.5 h-3.5" />
+              {showAddCustom ? "Close Form" : "Custom Bearing"}
+            </Button>
           </CardHeader>
-          <CardContent>
+          <CardContent className="space-y-4">
+            {showAddCustom && (
+              <div className="p-3.5 rounded border border-border bg-muted/20 space-y-3">
+                <div className="font-semibold text-primary text-xs uppercase tracking-wider">
+                  Add Custom Bearing Sizing
+                </div>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-xs">
+                  <div>
+                    <label className="text-muted-foreground block mb-1">
+                      Bearing ID
+                    </label>
+                    <input
+                      type="text"
+                      value={newBearing.id}
+                      onChange={(e) =>
+                        setNewBearing((prev) => ({
+                          ...prev,
+                          id: e.target.value,
+                        }))
+                      }
+                      className="w-full px-2 py-1 rounded border border-border bg-background text-foreground"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-muted-foreground block mb-1">
+                      Type
+                    </label>
+                    <select
+                      value={newBearing.type}
+                      onChange={(e) =>
+                        setNewBearing((prev) => ({
+                          ...prev,
+                          type: e.target.value as "ball" | "roller",
+                        }))
+                      }
+                      className="w-full px-2 py-1 rounded border border-border bg-background text-foreground text-xs"
+                    >
+                      <option value="ball">Ball Bearing (p=3)</option>
+                      <option value="roller">Roller Bearing (p=10/3)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="text-muted-foreground block mb-1">
+                      Bore d (mm)
+                    </label>
+                    <input
+                      type="number"
+                      step="1"
+                      value={newBearing.d}
+                      onChange={(e) =>
+                        setNewBearing((prev) => ({
+                          ...prev,
+                          d: parseInt(e.target.value, 10) || 10,
+                        }))
+                      }
+                      className="w-full px-2 py-1 rounded border border-border bg-background text-foreground"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-muted-foreground block mb-1">
+                      Outer Dia D (mm)
+                    </label>
+                    <input
+                      type="number"
+                      step="1"
+                      value={newBearing.D}
+                      onChange={(e) =>
+                        setNewBearing((prev) => ({
+                          ...prev,
+                          D: parseInt(e.target.value, 10) || 20,
+                        }))
+                      }
+                      className="w-full px-2 py-1 rounded border border-border bg-background text-foreground"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-muted-foreground block mb-1">
+                      Width B (mm)
+                    </label>
+                    <input
+                      type="number"
+                      step="1"
+                      value={newBearing.B}
+                      onChange={(e) =>
+                        setNewBearing((prev) => ({
+                          ...prev,
+                          B: parseInt(e.target.value, 10) || 10,
+                        }))
+                      }
+                      className="w-full px-2 py-1 rounded border border-border bg-background text-foreground"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-muted-foreground block mb-1">
+                      Dynamic C (kN)
+                    </label>
+                    <input
+                      type="number"
+                      step="0.5"
+                      value={newBearing.C}
+                      onChange={(e) =>
+                        setNewBearing((prev) => ({
+                          ...prev,
+                          C: parseFloat(e.target.value) || 1,
+                        }))
+                      }
+                      className="w-full px-2 py-1 rounded border border-border bg-background text-foreground"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-muted-foreground block mb-1">
+                      Static C0 (kN)
+                    </label>
+                    <input
+                      type="number"
+                      step="0.5"
+                      value={newBearing.C0}
+                      onChange={(e) =>
+                        setNewBearing((prev) => ({
+                          ...prev,
+                          C0: parseFloat(e.target.value) || 1,
+                        }))
+                      }
+                      className="w-full px-2 py-1 rounded border border-border bg-background text-foreground"
+                    />
+                  </div>
+                  <div className="flex items-end">
+                    <Button
+                      size="sm"
+                      onClick={handleAddCustomBearing}
+                      className="w-full h-7 text-xs font-semibold"
+                    >
+                      Save & Plot
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            )}
+
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs border-collapse">
                 <thead>
@@ -274,7 +466,22 @@ export function BearingTab({ isImperial, shaftResult }: BearingTabProps) {
                           className="rounded border-border text-primary focus:ring-primary"
                         />
                       </td>
-                      <td className="p-2 font-mono">{c.bearing.id}</td>
+                      <td className="p-2 font-mono flex items-center gap-1.5">
+                        {c.bearing.id}
+                        {c.bearing.isCustom && (
+                          <Badge
+                            variant="outline"
+                            className="text-[9px] px-1 py-0 bg-primary/10 text-primary border-primary/30"
+                          >
+                            Custom
+                          </Badge>
+                        )}
+                        {c.bearing.series && !c.bearing.isCustom && (
+                          <span className="text-[10px] text-muted-foreground hidden sm:inline">
+                            ({c.bearing.series.split(" ")[0]})
+                          </span>
+                        )}
+                      </td>
                       <td className="p-2 text-muted-foreground">
                         {c.bearing.d} × {c.bearing.D} × {c.bearing.B}
                       </td>
@@ -303,6 +510,9 @@ export function BearingTab({ isImperial, shaftResult }: BearingTabProps) {
           </CardContent>
         </Card>
       </div>
+
+      {/* Mathematical Theory & Governing Equations */}
+      <BearingMathDoc />
     </div>
   );
 }

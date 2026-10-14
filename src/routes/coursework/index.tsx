@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   BookOpen,
   CheckCircle2,
@@ -30,7 +30,7 @@ import {
 } from "@/data/portfolio-data";
 import PrimaryLayout from "@/layouts/primary-layout";
 
-export const Route = createFileRoute("/coursework")({
+export const Route = createFileRoute("/coursework/")({
   component: CourseworkPage,
 });
 
@@ -254,24 +254,34 @@ function CourseworkPage() {
                 {/* Card Footer with Deliverables Links */}
                 <CardFooter className="pt-4 border-t border-border/50 flex flex-wrap gap-2 justify-between items-center bg-card/20">
                   <div className="flex flex-wrap items-center gap-2">
-                    {project.deliverables.map((deliv, idx) => (
-                      <Button
-                        key={idx}
-                        variant="outline"
-                        size="sm"
-                        asChild
-                        className="text-xs h-8 gap-1.5"
-                      >
-                        <a
-                          href={deliv.url}
-                          target="_blank"
-                          rel="noreferrer"
+                    {project.deliverables.map((deliv, idx) => {
+                      const isInternal = deliv.url.startsWith("/");
+                      return (
+                        <Button
+                          key={idx}
+                          variant="outline"
+                          size="sm"
+                          asChild
+                          className="text-xs h-8 gap-1.5"
                         >
-                          <DeliverableIcon type={deliv.type} />
-                          {deliv.label}
-                        </a>
-                      </Button>
-                    ))}
+                          {isInternal ? (
+                            <Link to={deliv.url}>
+                              <DeliverableIcon type={deliv.type} />
+                              {deliv.label}
+                            </Link>
+                          ) : (
+                            <a
+                              href={deliv.url}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              <DeliverableIcon type={deliv.type} />
+                              {deliv.label}
+                            </a>
+                          )}
+                        </Button>
+                      );
+                    })}
                   </div>
 
                   <span className="text-[11px] text-muted-foreground font-mono">

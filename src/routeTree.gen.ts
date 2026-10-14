@@ -11,11 +11,12 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
-import { Route as CourseworkRouteImport } from './routes/coursework'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as ResumeRouteImport } from './routes/resume'
+import { Route as CourseworkIndexRouteImport } from './routes/coursework/index'
 import { Route as InteractiveIndexRouteImport } from './routes/interactive/index'
 import { Route as InteractiveFrMathRouteImport } from './routes/interactive/fr-math'
+import { Route as CourseworkTimeExpressiveLineRouteImport } from './routes/coursework/time.expressive-line'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -25,11 +26,6 @@ const IndexRoute = IndexRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CourseworkRoute = CourseworkRouteImport.update({
-  id: '/coursework',
-  path: '/coursework',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProjectsRoute = ProjectsRouteImport.update({
@@ -42,6 +38,11 @@ const ResumeRoute = ResumeRouteImport.update({
   path: '/resume',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CourseworkIndexRoute = CourseworkIndexRouteImport.update({
+  id: '/coursework/',
+  path: '/coursework/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const InteractiveIndexRoute = InteractiveIndexRouteImport.update({
   id: '/interactive/',
   path: '/interactive/',
@@ -52,73 +53,86 @@ const InteractiveFrMathRoute = InteractiveFrMathRouteImport.update({
   path: '/interactive/fr-math',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CourseworkTimeExpressiveLineRoute =
+  CourseworkTimeExpressiveLineRouteImport.update({
+    id: '/coursework/time/expressive-line',
+    path: '/coursework/time/expressive-line',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/coursework': typeof CourseworkRoute
   '/projects': typeof ProjectsRoute
   '/resume': typeof ResumeRoute
   '/interactive/fr-math': typeof InteractiveFrMathRoute
+  '/coursework/': typeof CourseworkIndexRoute
   '/interactive/': typeof InteractiveIndexRoute
+  '/coursework/time/expressive-line': typeof CourseworkTimeExpressiveLineRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/coursework': typeof CourseworkRoute
   '/projects': typeof ProjectsRoute
   '/resume': typeof ResumeRoute
   '/interactive/fr-math': typeof InteractiveFrMathRoute
+  '/coursework': typeof CourseworkIndexRoute
   '/interactive': typeof InteractiveIndexRoute
+  '/coursework/time/expressive-line': typeof CourseworkTimeExpressiveLineRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/coursework': typeof CourseworkRoute
   '/projects': typeof ProjectsRoute
   '/resume': typeof ResumeRoute
   '/interactive/fr-math': typeof InteractiveFrMathRoute
+  '/coursework/': typeof CourseworkIndexRoute
   '/interactive/': typeof InteractiveIndexRoute
+  '/coursework/time/expressive-line': typeof CourseworkTimeExpressiveLineRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/about'
-    | '/coursework'
     | '/projects'
     | '/resume'
     | '/interactive/fr-math'
+    | '/coursework/'
     | '/interactive/'
+    | '/coursework/time/expressive-line'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
-    | '/coursework'
     | '/projects'
     | '/resume'
     | '/interactive/fr-math'
+    | '/coursework'
     | '/interactive'
+    | '/coursework/time/expressive-line'
   id:
     | '__root__'
     | '/'
     | '/about'
-    | '/coursework'
     | '/projects'
     | '/resume'
     | '/interactive/fr-math'
+    | '/coursework/'
     | '/interactive/'
+    | '/coursework/time/expressive-line'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  CourseworkRoute: typeof CourseworkRoute
   ProjectsRoute: typeof ProjectsRoute
   ResumeRoute: typeof ResumeRoute
   InteractiveFrMathRoute: typeof InteractiveFrMathRoute
+  CourseworkIndexRoute: typeof CourseworkIndexRoute
   InteractiveIndexRoute: typeof InteractiveIndexRoute
+  CourseworkTimeExpressiveLineRoute: typeof CourseworkTimeExpressiveLineRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -137,13 +151,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/coursework': {
-      id: '/coursework'
-      path: '/coursework'
-      fullPath: '/coursework'
-      preLoaderRoute: typeof CourseworkRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/projects': {
       id: '/projects'
       path: '/projects'
@@ -156,6 +163,13 @@ declare module '@tanstack/react-router' {
       path: '/resume'
       fullPath: '/resume'
       preLoaderRoute: typeof ResumeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/coursework/': {
+      id: '/coursework/'
+      path: '/coursework'
+      fullPath: '/coursework/'
+      preLoaderRoute: typeof CourseworkIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/interactive/': {
@@ -172,17 +186,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InteractiveFrMathRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/coursework/time/expressive-line': {
+      id: '/coursework/time/expressive-line'
+      path: '/coursework/time/expressive-line'
+      fullPath: '/coursework/time/expressive-line'
+      preLoaderRoute: typeof CourseworkTimeExpressiveLineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  CourseworkRoute: CourseworkRoute,
   ProjectsRoute: ProjectsRoute,
   ResumeRoute: ResumeRoute,
   InteractiveFrMathRoute: InteractiveFrMathRoute,
+  CourseworkIndexRoute: CourseworkIndexRoute,
   InteractiveIndexRoute: InteractiveIndexRoute,
+  CourseworkTimeExpressiveLineRoute: CourseworkTimeExpressiveLineRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

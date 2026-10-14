@@ -13,6 +13,7 @@ import { CrankMath } from "../crank";
 import { fmt, Units } from "../unit";
 import { drawLinkage, drawOscillationGraph } from "../viz/crank-viz";
 import { safetyVerdict } from "../viz/draw";
+import { CrankMathDoc } from "./MathDocs";
 
 interface CrankTabProps {
   isImperial: boolean;
@@ -397,6 +398,9 @@ export function CrankTab({ isImperial }: CrankTabProps) {
           </CardContent>
         </Card>
       </div>
+
+      {/* Mathematical Theory & Governing Equations */}
+      <CrankMathDoc />
     </div>
   );
 }

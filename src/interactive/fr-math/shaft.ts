@@ -37,14 +37,85 @@ export const RELIABILITY_KE: Record<number, number> = {
 
 export const SHAFT_MATERIALS: Record<
   ShaftMaterialKey,
-  { label: string; Sut: number; Sy: number; E: number }
+  { label: string; Sut: number; Sy: number; E: number; seRatio?: number }
 > = {
-  "4140": { label: "4140 Q&T (HRC 28)", Sut: 1020, Sy: 900, E: 207000 },
-  "4340": { label: "4340 Q&T (HRC 35)", Sut: 1280, Sy: 1180, E: 207000 },
-  "1045": { label: "1045 cold-drawn", Sut: 630, Sy: 530, E: 207000 },
-  "8620": { label: "8620 carburized core", Sut: 780, Sy: 550, E: 207000 },
-  "7075": { label: "7075-T6 aluminium", Sut: 572, Sy: 503, E: 71700 },
-  Ti64: { label: "Ti-6Al-4V", Sut: 950, Sy: 880, E: 113800 },
+  "4140": {
+    label: "4140 Q&T (HRC 28)",
+    Sut: 1020,
+    Sy: 900,
+    E: 207000,
+    seRatio: 0.5,
+  },
+  "4340": {
+    label: "4340 Q&T (HRC 35)",
+    Sut: 1280,
+    Sy: 1180,
+    E: 207000,
+    seRatio: 0.5,
+  },
+  "300M": {
+    label: "300M / AMS 6417 ultra-high-strength",
+    Sut: 1950,
+    Sy: 1600,
+    E: 207000,
+    seRatio: 0.45,
+  },
+  "1045": {
+    label: "1045 cold-drawn",
+    Sut: 630,
+    Sy: 530,
+    E: 207000,
+    seRatio: 0.5,
+  },
+  "8620": {
+    label: "8620 carburized core",
+    Sut: 780,
+    Sy: 550,
+    E: 207000,
+    seRatio: 0.5,
+  },
+  "174PH": {
+    label: "17-4 PH stainless (H900)",
+    Sut: 1310,
+    Sy: 1170,
+    E: 196000,
+    seRatio: 0.45,
+  },
+  "7075": {
+    label: "7075-T6 aluminium",
+    Sut: 572,
+    Sy: 503,
+    E: 71700,
+    seRatio: 0.35,
+  },
+  "6061": {
+    label: "6061-T6 aluminium",
+    Sut: 310,
+    Sy: 276,
+    E: 68900,
+    seRatio: 0.32,
+  },
+  Ti64: {
+    label: "Ti-6Al-4V Grade 5",
+    Sut: 950,
+    Sy: 880,
+    E: 113800,
+    seRatio: 0.45,
+  },
+  "52100": {
+    label: "52100 high-carbon bearing steel",
+    Sut: 2240,
+    Sy: 2030,
+    E: 210000,
+    seRatio: 0.42,
+  },
+  custom: {
+    label: "Custom material",
+    Sut: 1000,
+    Sy: 800,
+    E: 207000,
+    seRatio: 0.5,
+  },
 };
 
 const EPS = 1e-6;
@@ -152,8 +223,10 @@ export function enduranceLimit(
   finishKey: SurfaceFinishKey = "machined",
   reliability = 0.99,
   tempC = 20,
+  seRatio = 0.5,
 ) {
-  const SePrime = Sut <= 1400 ? 0.5 * Sut : 700;
+  const unroundedPrime = seRatio * Sut;
+  const SePrime = unroundedPrime <= 700 ? unroundedPrime : 700;
 
   const f = SURFACE_FINISH[finishKey] || SURFACE_FINISH.machined;
   const ka = Math.min(f.a * Sut ** f.b, 1);
@@ -179,6 +252,7 @@ export function analyzeShaft(model: ShaftInput): ShaftResult {
     loads = [],
     torques = [],
     material = "4140",
+    customMaterial,
     surfaceFinish = "machined",
     Kf = 1.6,
     Kfs = 1.4,
@@ -187,7 +261,16 @@ export function analyzeShaft(model: ShaftInput): ShaftResult {
   } = model;
 
   const [xA, xB] = supports;
-  const mat = SHAFT_MATERIALS[material] || SHAFT_MATERIALS["4140"];
+  const isCustom = material === "custom" && customMaterial != null;
+  const mat = isCustom
+    ? {
+        label: customMaterial.label || "Custom material",
+        Sut: customMaterial.Sut,
+        Sy: customMaterial.Sy,
+        E: customMaterial.E,
+        seRatio: customMaterial.seRatio ?? 0.5,
+      }
+    : SHAFT_MATERIALS[material] || SHAFT_MATERIALS["4140"];
 
   const breakpoints = [
     xA,
@@ -241,7 +324,14 @@ export function analyzeShaft(model: ShaftInput): ShaftResult {
     tauTorsion[i] = Math.abs(T[i]) / Zp;
     vonMises[i] = Math.hypot(sigmaBend[i], Math.sqrt(3) * tauTorsion[i]);
 
-    const { Se } = enduranceLimit(mat.Sut, d[i], surfaceFinish, reliability);
+    const { Se } = enduranceLimit(
+      mat.Sut,
+      d[i],
+      surfaceFinish,
+      reliability,
+      20,
+      mat.seRatio ?? 0.5,
+    );
     const alternating = (2 * Kf * M[i]) / Se;
     const midrange = (Math.sqrt(3) * Kfs * Math.abs(T[i])) / mat.Sut;
     const inv = (16 / (Math.PI * d[i] ** 3)) * (alternating + midrange);

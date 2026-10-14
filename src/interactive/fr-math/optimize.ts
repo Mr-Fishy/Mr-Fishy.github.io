@@ -30,9 +30,7 @@ export function optimize(
 
   const pairs: { p: number; g: number; r: number }[] = [];
   for (let p = minTooth; p <= maxTooth; p++) {
-    if (p % 2 !== 0) continue;
     for (let g = Math.max(p, minTooth); g <= maxTooth; g++) {
-      if (g % 2 !== 0) continue;
       pairs.push({ p, g, r: g / p });
     }
   }

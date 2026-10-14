@@ -15,6 +15,7 @@ import type {
   GearMeshResult,
   OptimizationResult,
 } from "../types";
+import { OptimizationMathDoc } from "./MathDocs";
 
 interface OptimizationTabProps {
   meshResult: GearMeshResult | null;
@@ -250,6 +251,9 @@ export function OptimizationTab({
           </CardContent>
         </Card>
       )}
+
+      {/* Mathematical Theory & Governing Equations */}
+      <OptimizationMathDoc />
     </div>
   );
 }
