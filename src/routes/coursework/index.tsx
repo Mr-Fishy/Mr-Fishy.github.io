@@ -262,10 +262,10 @@ function CourseworkPage() {
                           variant="outline"
                           size="sm"
                           asChild
-                          className="text-xs h-8 gap-1.5"
+                          className="text-xs h-8"
                         >
                           {isInternal ? (
-                            <Link to={deliv.url}>
+                            <Link to={deliv.url} className="flex gap-1.5">
                               <DeliverableIcon type={deliv.type} />
                               {deliv.label}
                             </Link>
@@ -274,6 +274,7 @@ function CourseworkPage() {
                               href={deliv.url}
                               target="_blank"
                               rel="noreferrer"
+                              className="flex gap-1.5"
                             >
                               <DeliverableIcon type={deliv.type} />
                               {deliv.label}

@@ -440,15 +440,15 @@ export const portfolioData: PortfolioData = {
       tagline:
         "Expressing the psychological arc of Catharsis through hand-drawn line weight and digital animation.",
       description:
-        "Sequential hand-drawn animation project translated and refined in Adobe Photoshop into black & white and chromatic looped GIFs, exploring how line velocity, weight, and texture evoke the release and liberation of Catharsis.",
+        "Sequential hand-drawn animation project translated and refined in Adobe Photoshop into black & white and chromatic looped GIFs, exploring how line velocity, weight, and texture can evoke an emotion or state of being.",
       longDescription: [
-        "Constructed sequential stages of refined hand drawings exploring emotional tension, continuity, and kinetic rhythm around the theme of Catharsis.",
-        "Digitized, aligned, and cleaned physical drawings in Adobe Photoshop to establish crisp frame registration.",
+        "Constructed sequential stages of hand drawings exploring emotional tension, continuity, and kinetic rhythm around the theme of Catharsis.",
+        "Digitized, aligned, and cleaned physical drawings in Adobe Photoshop to establish crisp frames.",
         "Assembled and timed looping GIF sequences across both monochromatic and colorized textures.",
       ],
       category: "Interactive Art",
       featured: true,
-      tags: ["Digital Animation", "Catharsis", "Photoshop", "Hand Drawing", "Sequential Art", "Visual Rhythm"],
+      tags: ["Digital Animation", "Catharsis", "Photoshop", "Hand Drawing", "Sequential Art"],
       deliverables: [
         {
           label: "View Project & Animations",
@@ -465,8 +465,8 @@ export const portfolioData: PortfolioData = {
         },
       ],
       keyOutcomes: [
-        "12–30 stage refined sequential hand drawings",
-        "High-contrast monochromatic base GIF and atmospheric colorized GIF",
+        "12-30 stage refined sequential hand drawings",
+        "High-contrast monochromatic base GIF and colorized GIF",
         "Understanding of line weight, motion pacing, and emotional resonance",
       ],
     },

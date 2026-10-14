@@ -158,7 +158,7 @@ function InteractiveHubPage() {
                   asChild
                   className="gap-2 group-hover:gap-3 transition-all"
                 >
-                  <Link to={site.route}>
+                  <Link to={site.route} className="flex gap-1.5 items-center">
                     Launch Subsite App <ArrowRight className="w-4 h-4" />
                   </Link>
                 </Button>
@@ -168,7 +168,7 @@ function InteractiveHubPage() {
         </div>
 
         {/* Directory Architecture Note Card */}
-        <Card className="border-dashed border-border bg-muted/20 p-6 text-center space-y-2">
+        {/* <Card className="border-dashed border-border bg-muted/20 p-6 text-center space-y-2">
           <div className="mx-auto w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-2">
             <Layers className="w-5 h-5" />
           </div>
@@ -190,7 +190,7 @@ function InteractiveHubPage() {
             </code>{" "}
             routes.
           </p>
-        </Card>
+        </Card> */}
       </div>
     </PrimaryLayout>
   );

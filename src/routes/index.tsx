@@ -61,8 +61,9 @@ function Home() {
 
             <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 pt-2">
               <Button asChild size="lg" className="rounded-full shadow-md">
-                <Link to="/projects">
-                  Explore Projects <ArrowRight className="w-4 h-4 ml-1" />
+                <Link to="/projects" className="flex gap-1.5 items-center">
+                  Explore Projects
+                  <ArrowRight className="w-4 h-4 ml-1" />
                 </Link>
               </Button>
               <Button
@@ -71,8 +72,9 @@ function Home() {
                 size="lg"
                 className="rounded-full"
               >
-                <Link to="/resume">
-                  <FileText className="w-4 h-4 mr-1" /> View CV / Resume
+                <Link to="/resume" className="flex gap-1.5 items-center">
+                  <FileText className="w-4 h-4 mr-1" />
+                  View CV / Resume
                 </Link>
               </Button>
             </div>

@@ -40,7 +40,7 @@ export default function ExpressiveLinePage() {
         {/* Navigation Breadcrumb */}
         <div className="flex items-center justify-between gap-4 border-b border-border pb-4">
           <Button variant="ghost" size="sm" asChild className="gap-1.5 -ml-2 text-muted-foreground hover:text-foreground">
-            <Link to="/coursework">
+            <Link to="/coursework" className="flex gap-1.5 items-center">
               <ArrowLeft className="w-4 h-4" />
               Back to Coursework
             </Link>
@@ -93,10 +93,10 @@ export default function ExpressiveLinePage() {
             </CardHeader>
             <CardContent className="space-y-3 text-sm text-muted-foreground leading-relaxed">
               <p>
-                In this exploration of <strong className="text-foreground">Expressive Line</strong>, line is treated as an energetic vessel for <strong className="text-foreground">Catharsis</strong>. Rather than depicting static gestures, the drawing stages visualize the full cycle of cathartic experience: starting with tightening constriction and erratic, jagged weight, escalating to a peak breaking threshold, and ultimately unraveling into fluid, expansive trajectories.
+                In this exploration of <strong className="text-foreground">Expressive Line Motion</strong>, the line is treated as a vessel for <strong className="text-foreground">Catharsis</strong>. Beginning with the buildup of emotional strain, anger, pain, sadness, and other strong emotions. The chaos inside leading to the bursting point, and the release as we return back to calm.
               </p>
               <p>
-                The digital assembly process in Adobe Photoshop transformed static hand drawings into a rhythmic cycle. In the black and white base sequence, the raw emotional strain is carried entirely by variable stroke pressure, aggressive density, and sudden kinematic dispersal. In the colorized sequence, palette shifts and textured backdrops heighten the emotional arc—moving from compressed distress into radiant, restorative liberation.
+                The digital assembly process in Adobe Photoshop transformed static hand drawings into a rhythmic cycle. In the black and white base sequence, the raw emotional strain is carried entirely by line pressure, motion, and texture. In the colorized sequence, colored texture enhances the visual experience by amplifying the animated drawings.
               </p>
             </CardContent>
           </Card>
@@ -159,9 +159,6 @@ export default function ExpressiveLinePage() {
                 <TabsTrigger value="color" className="text-xs">
                   2. Color &amp; Texture
                 </TabsTrigger>
-                <TabsTrigger value="sound" className="text-xs">
-                  3. Extra Credit
-                </TabsTrigger>
               </TabsList>
             </Tabs>
           </div>
@@ -184,16 +181,16 @@ export default function ExpressiveLinePage() {
                     Line &amp; Movement
                   </Badge>
                 </div>
-                <div className="relative bg-black/90 p-4 sm:p-6 flex items-center justify-center min-h-[340px]">
+                <div className="relative bg-black/90 p-4 sm:p-6 flex items-center justify-center min-h-85">
                   <img
                     src="/Image-Sequence-BW.gif"
                     alt="Black and White Expressive Line Animation Sequence"
-                    className="max-h-[380px] w-auto rounded shadow-2xl object-contain mx-auto"
+                    className="max-h-95 w-auto rounded shadow-2xl object-contain mx-auto"
                   />
                 </div>
                 <CardContent className="p-5 space-y-2 text-xs sm:text-sm text-muted-foreground">
                   <p>
-                    <strong className="text-foreground">Base Line Dynamic:</strong> Raw expression through line weight modulation, acceleration, and anatomical deformation without the assistance of chromatic contrast.
+                    <strong className="text-foreground">Base Line Dynamic:</strong> Expression through line weight, acceleration, and deformation.
                   </p>
                 </CardContent>
               </Card>
@@ -206,23 +203,23 @@ export default function ExpressiveLinePage() {
                       Part 2: Chromatic Expansion
                     </span>
                     <h3 className="text-lg font-bold text-foreground">
-                      Colorized &amp; Textured Sequence
+                      Colorized Sequence
                     </h3>
                   </div>
                   <Badge variant="default" className="text-[11px]">
                     Color &amp; Atmosphere
                   </Badge>
                 </div>
-                <div className="relative bg-black/90 p-4 sm:p-6 flex items-center justify-center min-h-[340px]">
+                <div className="relative bg-black/90 p-4 sm:p-6 flex items-center justify-center min-h-85">
                   <img
                     src="/Image-Sequence-Color.gif"
                     alt="Color and Textured Expressive Line Animation Sequence"
-                    className="max-h-[380px] w-auto rounded shadow-2xl object-contain mx-auto"
+                    className="max-h-95 w-auto rounded shadow-2xl object-contain mx-auto"
                   />
                 </div>
                 <CardContent className="p-5 space-y-2 text-xs sm:text-sm text-muted-foreground">
                   <p>
-                    <strong className="text-foreground">Chromatic Resonance:</strong> Color and ambient texture applied to the line form, intensifying the psychological undertones and amplifying focal shifts.
+                    <strong className="text-foreground">Chromatic Resonance:</strong> Color and ambient texture applied to the line form, amplifying the undertones and focus.
                   </p>
                 </CardContent>
               </Card>
@@ -238,16 +235,16 @@ export default function ExpressiveLinePage() {
                     Deliverable 01
                   </Badge>
                   <h3 className="text-xl font-bold text-foreground mt-1">
-                    B&amp;W Base Animation: Form &amp; Tension
+                    Black &amp; White Sequence
                   </h3>
                 </div>
-                <span className="text-xs text-muted-foreground font-mono">12–30 Frame Cycle</span>
+                <span className="text-xs text-muted-foreground font-mono">27 Frame Cycle</span>
               </div>
               <div className="bg-black/95 p-6 sm:p-10 flex items-center justify-center">
                 <img
                   src="/Image-Sequence-BW.gif"
                   alt="Black and White Expressive Line Animation Sequence"
-                  className="max-h-[440px] w-auto rounded-lg shadow-2xl object-contain"
+                  className="max-h-110 w-auto rounded-lg shadow-2xl object-contain"
                 />
               </div>
               <CardContent className="p-6 space-y-4 text-sm text-muted-foreground leading-relaxed">
@@ -256,7 +253,7 @@ export default function ExpressiveLinePage() {
                     Approach to Monochromatic Form
                   </h4>
                   <p>
-                    Without color to direct attention, visual hierarchy is achieved entirely through stroke density, edge roughness, and timing intervals. Rapid frame progressions build tension, while sustained poses release it.
+                    My interpretation of Catharsis led me to feel that it represented the release of strong, often negative emotion. With my animation, my idea was to focus on the growth of internal chaos, and express the release of emotions as we come back to a stable state. I utlized texture to give the feeling of dirty or chaotic within the line as it grows to its bursting point, as well as the irratic texture along the line as it grows.  
                   </p>
                 </div>
               </CardContent>
@@ -272,7 +269,7 @@ export default function ExpressiveLinePage() {
                     Deliverable 02
                   </Badge>
                   <h3 className="text-xl font-bold text-foreground mt-1">
-                    Colorized &amp; Textured Sequence: Psychological Atmosphere
+                    Colorized &amp; Textured Sequence
                   </h3>
                 </div>
                 <span className="text-xs text-muted-foreground font-mono">Photoshop Colorization</span>
@@ -281,62 +278,18 @@ export default function ExpressiveLinePage() {
                 <img
                   src="/Image-Sequence-Color.gif"
                   alt="Color Expressive Line Animation Sequence"
-                  className="max-h-[440px] w-auto rounded-lg shadow-2xl object-contain"
+                  className="max-h-110 w-auto rounded-lg shadow-2xl object-contain"
                 />
               </div>
               <CardContent className="p-6 space-y-4 text-sm text-muted-foreground leading-relaxed">
                 <div>
                   <h4 className="text-sm font-semibold text-foreground mb-1">
-                    Color Theory &amp; Mood Amplification
+                    Mood Amplification
                   </h4>
                   <p>
-                    The addition of chromatic treatments and atmospheric texturing transforms the emotional landscape. Color is utilized not merely decorative filler, but as a deliberate emotional signifier that works in concert with the kinetic motion.
+                    My use of color was focused on increasing the expressive quality of the animation by adding color to the internal texture of the line. I used soft greens to show stability in the beginning, and then cycled through colors to show the chaos and strong emotions, yellows for feeling off, reds for anger or frustration, and purples and blues for sadness or depressive feelings. 
                   </p>
                 </div>
-              </CardContent>
-            </Card>
-          )}
-
-          {/* Tab 4: Extra Credit / Sound */}
-          {activeTab === "sound" && (
-            <Card className="overflow-hidden border-border/80 bg-card/50 shadow-lg max-w-3xl mx-auto">
-              <div className="p-4 bg-muted/40 border-b border-border flex items-center justify-between">
-                <div>
-                  <Badge variant="outline" className="text-[10px] uppercase font-mono text-primary border-primary/30">
-                    Extra Credit Deliverable
-                  </Badge>
-                  <h3 className="text-xl font-bold text-foreground mt-1">
-                    Kinetic Line with Soundscape
-                  </h3>
-                </div>
-              </div>
-              <div className="bg-black/95 p-6 sm:p-10 flex flex-col items-center justify-center space-y-4">
-                <img
-                  src="/Image-Sequence-Color.gif"
-                  alt="Color Expressive Line with Sound"
-                  className="max-h-[380px] w-auto rounded-lg shadow-2xl object-contain"
-                />
-                
-                {/* Audio Component / Placeholder */}
-                <div className="w-full max-w-md bg-card/80 border border-border rounded-xl p-4 flex items-center justify-between gap-4">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2.5 rounded-full bg-primary/10 text-primary">
-                      <Volume2 className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <p className="text-xs font-semibold text-foreground">Soundscape Integration</p>
-                      <p className="text-[11px] text-muted-foreground">Audio synchronization</p>
-                    </div>
-                  </div>
-                  <Badge variant="secondary" className="text-[11px]">
-                    Optional Media
-                  </Badge>
-                </div>
-              </div>
-              <CardContent className="p-6 space-y-3 text-sm text-muted-foreground leading-relaxed">
-                <p>
-                  Sound integration builds on the visual kinetics by providing an acoustic pulse that aligns with the rhythm of the lines. Whether utilizing organic foley or atmospheric ambient drone, audio provides an additional sensory dimension to the emotional state.
-                </p>
               </CardContent>
             </Card>
           )}
@@ -351,7 +304,7 @@ export default function ExpressiveLinePage() {
               <span className="text-xs font-mono font-bold text-primary">Stage 01</span>
               <h3 className="text-base font-semibold text-foreground">Refined Hand Drawings</h3>
               <p className="text-xs text-muted-foreground leading-relaxed">
-                Generated sequential drawing stages on paper, refining contour line weight and testing continuity of motion across successive sheets.
+                Hand-drew sequential drawing stages on paper, refining line contours and testing continuity of motion across successive sheets.
               </p>
             </div>
 
@@ -359,7 +312,7 @@ export default function ExpressiveLinePage() {
               <span className="text-xs font-mono font-bold text-primary">Stage 02</span>
               <h3 className="text-base font-semibold text-foreground">Digital Capture &amp; Cleanup</h3>
               <p className="text-xs text-muted-foreground leading-relaxed">
-                Digitized physical drawings, standardized frame registration in Photoshop, balanced threshold values, and eliminated scanning artifacts.
+                Digitized physical drawings, standardized frames in Photoshop, balanced any off-tones, and eliminated scanning artifacts.
               </p>
             </div>
 
@@ -367,7 +320,7 @@ export default function ExpressiveLinePage() {
               <span className="text-xs font-mono font-bold text-primary">Stage 03</span>
               <h3 className="text-base font-semibold text-foreground">Timeline Assembly &amp; Color</h3>
               <p className="text-xs text-muted-foreground leading-relaxed">
-                Configured frame timing intervals for fluid kinetic pacing, layered chromatic accents, and exported optimized looped animated GIFs.
+                Configured frame timing intervals for fluid kinetic pacing, layered chromatic additions, and exported looped animated GIFs.
               </p>
             </div>
           </div>
