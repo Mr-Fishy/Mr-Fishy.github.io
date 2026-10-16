@@ -76,7 +76,7 @@ function ResumePage() {
               <Printer className="w-4 h-4" /> Print
             </Button>
             {portfolioData.socials.resumePdf && (
-              <Button asChild variant="outline" size="sm" className="gap-2">
+              <Button asChild variant="outline" size="sm" className="flex gap-1.5 items-center">
                 <a
                   href={portfolioData.socials.resumePdf}
                   download="Evan_Fish_Resume.pdf"

@@ -41,7 +41,7 @@ export default function PrimaryLayout({ children }: PrimaryLayoutProps) {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3 group">
             <Avatar className="h-10 w-10 border-2 border-primary/20 transition-transform group-hover:scale-105">
-              <AvatarImage src="/logo512.png" alt={portfolioData.name} />
+              {/* <AvatarImage src="/logo512.png" alt={portfolioData.name} /> */}
               <AvatarFallback>EF</AvatarFallback>
             </Avatar>
             <div>
