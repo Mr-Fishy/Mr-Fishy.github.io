@@ -1,17 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowLeft,
-  Calendar,
-  CheckCircle2,
-  Clock,
-  Eye,
-  FileText,
-  Layers,
-  Maximize2,
+  Camera,
   Palette,
-  Sparkles,
-  Volume2,
-  VolumeX,
+  Sparkles
 } from "lucide-react";
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -23,7 +15,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import PrimaryLayout from "@/layouts/primary-layout";
 
 export const Route = createFileRoute("/coursework/time/expressive-line")({
@@ -32,13 +24,12 @@ export const Route = createFileRoute("/coursework/time/expressive-line")({
 
 export default function ExpressiveLinePage() {
   const [activeTab, setActiveTab] = useState<string>("compare");
-  const [audioPlaying, setAudioPlaying] = useState<boolean>(false);
 
   return (
     <PrimaryLayout>
       <div className="space-y-12 animate-in fade-in-50 duration-500 pb-16">
         {/* Navigation Breadcrumb */}
-        <div className="flex items-center justify-between gap-4 border-b border-border pb-4">
+        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border pb-4">
           <Button variant="ghost" size="sm" asChild className="gap-1.5 -ml-2 text-muted-foreground hover:text-foreground">
             <Link to="/coursework" className="flex gap-1.5 items-center">
               <ArrowLeft className="w-4 h-4" />
@@ -47,6 +38,16 @@ export default function ExpressiveLinePage() {
           </Button>
 
           <div className="flex items-center gap-2">
+            <Button
+              variant="outline"
+              size="sm"
+              asChild
+              className="text-xs h-7 gap-1 text-muted-foreground hover:text-foreground"
+            >
+              <Link to="/coursework/time/photo-montage">
+                View Photo Montage Project →
+              </Link>
+            </Button>
             <Badge variant="secondary" className="font-mono text-xs">
               ART 1107: Time
             </Badge>
@@ -325,6 +326,23 @@ export default function ExpressiveLinePage() {
             </div>
           </div>
         </section>
+
+        {/* Footer Navigation to other Coursework */}
+        <div className="border-t border-border pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <Button variant="outline" size="sm" asChild className="gap-2">
+            <Link to="/coursework">
+              <ArrowLeft className="w-4 h-4" />
+              All Academic Projects
+            </Link>
+          </Button>
+
+          <Button variant="secondary" size="sm" asChild className="gap-2">
+            <Link to="/coursework/time/photo-montage">
+              <Camera className="w-4 h-4" />
+              Next: Photo Montage Study →
+            </Link>
+          </Button>
+        </div>
       </div>
     </PrimaryLayout>
   );

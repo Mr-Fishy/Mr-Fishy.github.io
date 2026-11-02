@@ -17,6 +17,7 @@ import { Route as CourseworkIndexRouteImport } from './routes/coursework/index'
 import { Route as InteractiveIndexRouteImport } from './routes/interactive/index'
 import { Route as InteractiveFrMathRouteImport } from './routes/interactive/fr-math'
 import { Route as CourseworkTimeExpressiveLineRouteImport } from './routes/coursework/time.expressive-line'
+import { Route as CourseworkTimePhotoMontageRouteImport } from './routes/coursework/time.photo-montage'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -59,6 +60,12 @@ const CourseworkTimeExpressiveLineRoute =
     path: '/coursework/time/expressive-line',
     getParentRoute: () => rootRouteImport,
   } as any)
+const CourseworkTimePhotoMontageRoute =
+  CourseworkTimePhotoMontageRouteImport.update({
+    id: '/coursework/time/photo-montage',
+    path: '/coursework/time/photo-montage',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -69,6 +76,7 @@ export interface FileRoutesByFullPath {
   '/coursework/': typeof CourseworkIndexRoute
   '/interactive/': typeof InteractiveIndexRoute
   '/coursework/time/expressive-line': typeof CourseworkTimeExpressiveLineRoute
+  '/coursework/time/photo-montage': typeof CourseworkTimePhotoMontageRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -79,6 +87,7 @@ export interface FileRoutesByTo {
   '/coursework': typeof CourseworkIndexRoute
   '/interactive': typeof InteractiveIndexRoute
   '/coursework/time/expressive-line': typeof CourseworkTimeExpressiveLineRoute
+  '/coursework/time/photo-montage': typeof CourseworkTimePhotoMontageRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -90,6 +99,7 @@ export interface FileRoutesById {
   '/coursework/': typeof CourseworkIndexRoute
   '/interactive/': typeof InteractiveIndexRoute
   '/coursework/time/expressive-line': typeof CourseworkTimeExpressiveLineRoute
+  '/coursework/time/photo-montage': typeof CourseworkTimePhotoMontageRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -102,6 +112,7 @@ export interface FileRouteTypes {
     | '/coursework/'
     | '/interactive/'
     | '/coursework/time/expressive-line'
+    | '/coursework/time/photo-montage'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -112,6 +123,7 @@ export interface FileRouteTypes {
     | '/coursework'
     | '/interactive'
     | '/coursework/time/expressive-line'
+    | '/coursework/time/photo-montage'
   id:
     | '__root__'
     | '/'
@@ -122,6 +134,7 @@ export interface FileRouteTypes {
     | '/coursework/'
     | '/interactive/'
     | '/coursework/time/expressive-line'
+    | '/coursework/time/photo-montage'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -133,6 +146,7 @@ export interface RootRouteChildren {
   CourseworkIndexRoute: typeof CourseworkIndexRoute
   InteractiveIndexRoute: typeof InteractiveIndexRoute
   CourseworkTimeExpressiveLineRoute: typeof CourseworkTimeExpressiveLineRoute
+  CourseworkTimePhotoMontageRoute: typeof CourseworkTimePhotoMontageRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -193,6 +207,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CourseworkTimeExpressiveLineRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/coursework/time/photo-montage': {
+      id: '/coursework/time/photo-montage'
+      path: '/coursework/time/photo-montage'
+      fullPath: '/coursework/time/photo-montage'
+      preLoaderRoute: typeof CourseworkTimePhotoMontageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -205,6 +226,7 @@ const rootRouteChildren: RootRouteChildren = {
   CourseworkIndexRoute: CourseworkIndexRoute,
   InteractiveIndexRoute: InteractiveIndexRoute,
   CourseworkTimeExpressiveLineRoute: CourseworkTimeExpressiveLineRoute,
+  CourseworkTimePhotoMontageRoute: CourseworkTimePhotoMontageRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -470,5 +470,44 @@ export const portfolioData: PortfolioData = {
         "Understanding of line weight, motion pacing, and emotional resonance",
       ],
     },
+    {
+      id: "time-photo-montage",
+      title: "Photo Montage: The Super Moment",
+      courseCode: "ART 1107",
+      courseName: "Time",
+      quarter: "Fall 2026",
+      tagline:
+        "Synthesizing person, site, and activity into a 'super moment' using emphasis and subordination through shape and color.",
+      description:
+        "Complex portrait and photographic montage created for ART 1107 (Time). Composes 40+ images into a ",
+      longDescription: [
+        // "Synthesized multiple sequential exposures into a single unified 'super moment' on an oversized 3,000px+ Photoshop canvas.",
+        // "Applied the principles of emphasis and subordination through shape and color—foregrounding high-contrast juggling spheres and vivid autumn foliage while subordinating background SPU architecture.",
+        // "Explored the complex portrait of a performer where juggling serves as an active metaphor for temporal equilibrium and balancing dynamic forces across space and time.",
+      ],
+      category: "Interactive Art",
+      featured: true,
+      tags: ["Digital Photography", "Photo Montage", "Photoshop"],
+      deliverables: [
+        {
+          label: "View Project & Montage",
+          url: "/coursework/time/photo-montage",
+          type: "demo",
+        },
+      ],
+      media: [
+        {
+          type: "image",
+          url: "/time-montage.webp",
+          caption: "Composite Photo Montage: The Super Moment across SPU campus lawn",
+          alt: "Photo Montage showing catch being played on SPU campus",
+        },
+      ],
+      keyOutcomes: [
+        // "3,000px+ Photoshop composite orchestrating a 'super moment'",
+        // "Application of emphasis and subordination through shape and color",
+        // "Complex portraiture uniting person, site, and activity through temporal metaphor",
+      ],
+    },
   ],
 };

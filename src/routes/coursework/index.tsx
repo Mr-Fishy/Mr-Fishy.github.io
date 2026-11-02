@@ -6,10 +6,7 @@ import {
   FileText,
   FolderGit2,
   GraduationCap,
-  Image as ImageIcon,
-  Palette,
-  Search,
-  Sparkles,
+  Search
 } from "lucide-react";
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
