@@ -83,7 +83,7 @@ function Home() {
           <div className="flex justify-center">
             <div className="relative p-2 rounded-full bg-linear-to-tr from-teal-500/20 via-emerald-500/20 to-transparent border border-border shadow-xl">
               <Avatar className="w-36 h-36 sm:w-48 sm:h-48 rounded-full border-4 border-background">
-                <AvatarImage src="/logo512.png" alt={portfolioData.name} />
+                {/* <AvatarImage src="/logo512.png" alt={portfolioData.name} /> */}
                 <AvatarFallback className="text-3xl font-bold">
                   EF
                 </AvatarFallback>
