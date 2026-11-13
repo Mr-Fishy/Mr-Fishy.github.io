@@ -2,7 +2,15 @@ allowBuilds:
   esbuild: true
   workerd: true
 
-onlyBuiltDependencies:
-  - esbuild
-  - workerd
+permissions:
+  '@tanstack/devtools-vite':
+    skills: true
+  '@tanstack/react-start':
+    skills: [migrate-from-nextjs, react-start]
+  '@tanstack/router-plugin':
+    skills: true
 
+skills:
+  dirs:
+    - .agent/skills
+    - .gemini/skills

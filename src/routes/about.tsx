@@ -200,12 +200,12 @@ function AboutPage() {
         {/* Navigation CTAs */}
         <section className="pt-4 flex flex-wrap gap-4 items-center justify-between border-t border-border">
           <Button asChild variant="outline" className="gap-2">
-            <Link to="/projects">
+            <Link to="/projects" className="flex gap-2 items-center">
               <FolderGit2 className="w-4 h-4" /> View Projects
             </Link>
           </Button>
           <Button asChild className="gap-2">
-            <Link to="/resume">
+            <Link to="/resume" className="flex gap-2 items-center">
               <FileText className="w-4 h-4" /> View Full Resume / CV
             </Link>
           </Button>

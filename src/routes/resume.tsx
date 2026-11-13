@@ -5,6 +5,7 @@ import {
   Calendar,
   Download,
   GraduationCap,
+  Linkedin,
   Mail,
   MapPin,
   Phone,
@@ -63,6 +64,17 @@ function ResumePage() {
                   {portfolioData.phone}
                 </a>
               )}
+              {portfolioData.socials.linkedin && (
+                <a
+                  href={portfolioData.socials.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-1 hover:text-foreground transition-colors"
+                >
+                  <Linkedin className="w-3.5 h-3.5 text-primary" />{" "}
+                  {portfolioData.socials.linkedin.replace(/^https?:\/\/(www\.)?/, "")}
+                </a>
+              )}
             </div>
           </div>
 
@@ -82,13 +94,14 @@ function ResumePage() {
                   download="Evan_Fish_Resume.pdf"
                   target="_blank"
                   rel="noreferrer"
+                  className="flex gap-2 items-center"
                 >
                   <Download className="w-4 h-4" /> Download PDF
                 </a>
               </Button>
             )}
             <Button asChild size="sm" className="gap-2">
-              <a href={portfolioData.socials.email}>
+              <a href={portfolioData.socials.email} className="flex gap-2 items-center">
                 <Mail className="w-4 h-4" /> Contact
               </a>
             </Button>

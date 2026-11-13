@@ -10,9 +10,7 @@ import {
   Calculator,
   CheckCircle2,
   Cpu,
-  Layers,
   Search,
-  Sparkles,
 } from "lucide-react";
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -166,31 +164,6 @@ function InteractiveHubPage() {
             </Card>
           ))}
         </div>
-
-        {/* Directory Architecture Note Card */}
-        {/* <Card className="border-dashed border-border bg-muted/20 p-6 text-center space-y-2">
-          <div className="mx-auto w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-2">
-            <Layers className="w-5 h-5" />
-          </div>
-          <h3 className="font-bold text-base text-foreground">
-            Interactive Subsites Architecture
-          </h3>
-          <p className="text-xs sm:text-sm text-muted-foreground max-w-xl mx-auto">
-            Subsites reside in{" "}
-            <code className="px-1.5 py-0.5 rounded bg-muted font-mono text-foreground">
-              src/interactive/[name]/
-            </code>{" "}
-            with full TypeScript engines and React 19 visualizers, registered in{" "}
-            <code className="px-1.5 py-0.5 rounded bg-muted font-mono text-foreground">
-              src/interactive/data/subsites.ts
-            </code>{" "}
-            and exposed under{" "}
-            <code className="px-1.5 py-0.5 rounded bg-muted font-mono text-foreground">
-              /interactive/[name]
-            </code>{" "}
-            routes.
-          </p>
-        </Card> */}
       </div>
     </PrimaryLayout>
   );
